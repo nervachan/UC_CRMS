@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-green-900 text-white h-screen flex flex-col">
+            <div class="p-6">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <h1 class="text-center text-lg font-bold mt-4">UC CRMS</h1>
+            </div>
+            <nav class="flex-grow">
+                <ul class="space-y-2 px-4">
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">New Request</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">View All Requests</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Browse Inventory</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Schedule Pickup</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Help</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2">
+                <a href="#" class="block py-2 px-4 rounded bg-red-600 hover:bg-red-700 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold">Centralized Request Monitoring System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">UC Jaguars</span>
+                    <button class="text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Search -->
+            <section class="flex justify-between items-center mb-6">
+                <input type="text" placeholder="Search for items..." class="border rounded px-4 py-2 w-full">
+                <button class="bg-green-600 text-white px-4 py-2 mx-5 rounded hover:bg-green-700">Search</button>
+            </section>
+            <div class="py-3">
+                <h2 class="text-lg font-bold mb-4">Welcome, Daphnie!</h2>
+                <p class="text-gray-600">Here you can manage your requests and view the status of your items.</p>
+            </div>
+            <!-- Stats -->
+            <section class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Total Requests</h2>
+                    <p class="text-2xl font-bold">24</p>
+                    <p class="text-green-600">+3 from last month</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Pending Requests</h2>
+                    <p class="text-2xl font-bold">5</p>
+                    <p class="text-red-600">+2 from last week</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Approved Requests</h2>
+                    <p class="text-2xl font-bold">18</p>
+                    <p class="text-green-600">+5 from last month</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Rejected Requests</h2>
+                    <p class="text-2xl font-bold">1</p>
+                    <p class="text-gray-600">No Change</p>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Quick Actions</h2>
+                    <ul class="space-y-2 mt-4">
+                        <li><a href="#" class="block py-2 px-4 bg-green-600 text-white rounded hover:bg-green-700">New Request</a></li>
+                        <li><a href="#" class="block py-2 px-4 bg-green-600 text-white rounded hover:bg-green-700">View All Requests</a></li>
+                        <li><a href="#" class="block py-2 px-4 bg-green-600 text-white rounded hover:bg-green-700">Browse Inventory</a></li>
+                        <li><a href="#" class="block py-2 px-4 bg-green-600 text-white rounded hover:bg-green-700">Schedule Pickup</a></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">Frequently Requested Items</h2>
+                    <ul class="space-y-2 mt-4">
+                        <li class="flex justify-between">
+                            <span>A4 Bond Paper</span>
+                            <span class="text-green-600">In Stock</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Blue Ballpoint Pens</span>
+                            <span class="text-green-600">In Stock</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Staples</span>
+                            <span class="text-green-600">In Stock</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Stamp Pad</span>
+                            <span class="text-green-600">In Stock</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Recent Requests -->
+            <section class="bg-white p-4 rounded shadow">
+                <h2 class="text-lg font-bold mb-4">Your Recent Requests</h2>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border p-2">Request ID</th>
+                            <th class="border p-2">Items</th>
+                            <th class="border p-2">Date</th>
+                            <th class="border p-2">Status</th>
+                            <th class="border p-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border p-2">#REQ-0124</td>
+                            <td class="border p-2">A4 Bond Paper x2, Stapler x1</td>
+                            <td class="border p-2">May 15, 2025</td>
+                            <td class="border p-2 text-yellow-600">Pending</td>
+                            <td class="border p-2">
+                                <a href="#" class="text-blue-600 hover:underline">View</a>
+                                <a href="#" class="text-red-600 hover:underline ml-2">Cancel</a>
+                            </td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
