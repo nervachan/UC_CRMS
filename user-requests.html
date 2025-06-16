@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-green-900 text-white h-screen flex flex-col">
+            <div class="p-6">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <h1 class="text-center text-lg font-bold mt-4">UC CRMS</h1>
+                <!-- User Info -->
+                <div class="mt-4 text-center flex flex-col items-center">
+                    <div class="flex items-center justify-center mb-1">
+                        <svg class="w-6 h-6 mr-2 text-green-200" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.7 0 4.5-2.2 4.5-4.5S14.7 3 12 3 7.5 5.2 7.5 7.5 9.3 12 12 12zm0 2c-3 0-9 1.5-9 4.5V21h18v-2.5c0-3-6-4.5-9-4.5z"/>
+                        </svg>
+                        <div class="text-sm font-semibold">Daphnie Pelaez</div>
+                    </div>
+                    <div class="text-xs text-green-200">College of Business Administration</div>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="space-y-2 px-4">
+                    <li><a href="user-login.html" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
+                    <li><a href="user-new-request.html" class="block py-2 px-4 rounded hover:bg-green-700">New Request</a></li>
+                    <li><a href="user-requests.html" class="block py-2 px-4 rounded bg-green-700">View All Requests</a></li>
+                    <li><a href="user-browse-inventory.html" class="block py-2 px-4 rounded hover:bg-green-700">Browse Inventory</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Reports</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Help</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2">
+                <a href="#" class="block py-2 px-4 rounded bg-red-600 hover:bg-red-700 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold">Centralized Request Monitoring System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">Daphnie Pelaez</span>
+                    <button class="text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Requests Table -->
+            <section class="bg-white p-4 rounded shadow">
+                <h2 class="text-lg font-bold mb-4">Your Requests</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="border p-2 font-bold text-left">Request ID</th>
+                                <th class="border p-2 font-bold text-left">Items</th>
+                                <th class="border p-2 font-bold text-left">Date</th>
+                                <th class="border p-2 font-bold text-left">Status</th>
+                                <th class="border p-2 font-bold text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border p-2">#REQ-0124</td>
+                                <td class="border p-2">A4 Bond Paper x2, Stapler x1</td>
+                                <td class="border p-2">May 15, 2025</td>
+                                <td class="border p-2">
+                                    <span class="text-yellow-600">Pending</span>
+                                </td>
+                                <td class="border p-2">
+                                    <a href="#" class="text-blue-600 hover:underline">View</a>
+                                    <a href="#" class="text-red-600 hover:underline ml-2">Cancel</a>
+                                </td>
+                            </tr>
+                            <!-- ...more rows as needed... -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
