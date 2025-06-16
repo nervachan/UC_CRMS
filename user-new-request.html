@@ -16,7 +16,7 @@
             </div>
             <nav class="flex-grow overflow-y-auto">
                 <ul class="space-y-2 px-4">
-                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
+                    <li><a href="/user-login.html" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded bg-green-700">New Request</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">View All Requests</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Browse Inventory</a></li>
@@ -33,15 +33,17 @@
         <!-- Main Content -->
         <main class="flex-grow p-6 ml-64">
             <!-- Header -->
-            <header class="flex justify-between items-center mb-6 sticky top-0 bg-gray-100 z-10 p-4 shadow">
-                <h1 class="text-2xl font-bold">Centralized Request Monitoring System</h1>
+            <header class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold">Centralized Request Monitoring System</h1>
+                </div>
                 <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">UC Jaguars</span>
                     <button class="text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
                     </button>
-                    <span class="text-gray-700">UC Jaguars</span>
                 </div>
             </header>
 
@@ -51,10 +53,12 @@
                 <p class="text-gray-600 mb-6">Fill out the form below to submit a new request to the Logistics Management Office</p>
                
                 <form>
+                    <!-- Request Information Header -->
+                    <h3 class="text-lg font-semibold mb-2 mt-4">Request Information</h3>
                     <!-- Request Information -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label class="block text-gray-700 font-bold mb-2">Request Title</label>
+                            <label class="block text-gray-700 font-bold mb-2">Activity Title</label>
                             <input type="text" placeholder="Enter a Request..." class="border rounded px-4 py-2 w-full">
                         </div>
                         <div>
@@ -65,8 +69,11 @@
                         </div>
                     </div>
 
+                    <!-- Department Information Header -->
+                    <h3 class="text-lg font-semibold mb-2 mt-4">Department Information</h3>
                     <!-- Department Information -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
+                        
                         <div>
                             <label class="block text-gray-700 font-bold mb-2">Department</label>
                             <select class="border rounded px-4 py-2 w-full">
@@ -74,7 +81,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-gray-700 font-bold mb-2">Delivery Location</label>
+                            <label class="block text-gray-700 font-bold mb-2">Attach Approved Budget (if applicable)</label>
                             <input type="text" placeholder="Enter Location..." class="border rounded px-4 py-2 w-full">
                         </div>
                     </div>
@@ -88,6 +95,24 @@
                         <div>
                             <label class="block text-gray-700 font-bold mb-2">Needed By</label>
                             <input type="date" class="border rounded px-4 py-2 w-full">
+                        </div>
+                    </div>
+                    <!-- Priority Level Radio Buttons -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2">Priority Level</label>
+                        <div class="flex items-center space-x-6">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="low" class="form-radio text-green-600">
+                                <span class="ml-2">Low</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="medium" class="form-radio text-yellow-500">
+                                <span class="ml-2">Medium</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="high" class="form-radio text-red-600">
+                                <span class="ml-2">High</span>
+                            </label>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -127,6 +152,11 @@
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" placeholder="Item name" class="border rounded px-4 py-2 w-full">
                         <input type="number" placeholder="Quantity" class="border rounded px-4 py-2 w-full">
+                    </div>
+                    <!-- Image upload for custom item -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700 font-bold mb-2">Upload a picture (optional)</label>
+                        <input type="file" accept="image/*" class="border rounded px-4 py-2 w-full">
                     </div>
                     <button class="bg-green-600 text-white px-4 py-2 rounded mt-4 hover:bg-green-700">Add custom item</button>
                 </div>

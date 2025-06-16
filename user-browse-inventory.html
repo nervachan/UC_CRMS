@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Inventory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-green-900 text-white h-screen flex flex-col fixed">
+            <div class="p-6">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <h1 class="text-center text-lg font-bold mt-4">UC CRMS</h1>
+            </div>
+            <nav class="flex-grow overflow-y-auto">
+                <ul class="space-y-2 px-4">
+                    <li><a href="/user-login.html" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
+                    <li><a href="/user-new-request.html" class="block py-2 px-4 rounded hover:bg-green-700">New Request</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">View All Requests</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded bg-green-700">Browse Inventory</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Schedule Pickup</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Help</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2">
+                <a href="#" class="block py-2 px-4 rounded bg-red-600 hover:bg-red-700 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6 ml-64">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold">Centralized Request Monitoring System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">UC Jaguars</span>
+                    <button class="text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Inventory Table Section -->
+            <section class="bg-white p-6 rounded shadow">
+                <h2 class="text-xl font-bold mb-4">Available Inventories</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full border border-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Property Number</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Date Acquired</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">SLR Number</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Asset Account Form Number</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Item Description</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Category</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Quantity</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Unit</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Cost Per Unit</th>
+                                <th class="px-4 py-2 border-b text-left text-sm font-semibold text-gray-700">Total Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example row, duplicate or populate dynamically as needed -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">123456</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">2022-01-15</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">SLR-001</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">AAF-2022-01</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">A4 Bond Paper</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">Office Supplies</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">200</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">Ream</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">₱150</td>
+                                <td class="px-4 py-2 border-b text-sm text-gray-700">₱30,000</td>
+                            </tr>
+                            <!-- ...more rows as needed... -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination Navigation -->
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm text-gray-700">Showing 1 to 5 of 24 results</span>
+                    <nav class="inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                        <button class="px-2 py-1 border border-gray-300 bg-white text-gray-500 rounded-l hover:bg-gray-50" aria-label="Previous">
+                            &lt;
+                        </button>
+                        <button class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">1</button>
+                        <button class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</button>
+                        <button class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</button>
+                        <span class="px-3 py-1 border border-gray-300 bg-white text-gray-700">...</span>
+                        <button class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">5</button>
+                        <button class="px-2 py-1 border border-gray-300 bg-white text-gray-500 rounded-r hover:bg-gray-50" aria-label="Next">
+                            &gt;
+                        </button>
+                    </nav>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
