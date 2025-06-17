@@ -83,12 +83,12 @@
             <!-- Charts Section -->
             <section class="grid grid-cols-2 gap-4 mb-6">
                 <div class="bg-white p-4 rounded shadow flex flex-col items-center">
-                    <h2 class="text-base font-bold mb-2">Requests Over Time</h2>
+                    <h2 class="text-base font-bold mb-2">Requests Over Time by Department</h2>
                     <canvas id="lineChart" height="120"></canvas>
                 </div>
                 <div class="bg-white p-4 rounded shadow flex flex-col items-center">
-                    <h2 class="text-base font-bold mb-2">Request Status Distribution</h2>
-                    <canvas id="pieChart" width="500" height="500" style="max-width:400px;max-height:400px;"></canvas>
+                    <h2 class="text-base font-bold mb-2">Requests by Academic Department</h2>
+                    <canvas id="pieChart" width="300" height="300" style="max-width:300px;max-height:300px;"></canvas>
                 </div>
             </section>
 
@@ -128,7 +128,7 @@
                             <tr>
                                 <td class="border p-2 font-bold">REQ-2023-0124</td>
                                 <td class="border p-2">Dr. Maria Santos</td>
-                                <td class="border p-2">Science Department</td>
+                                <td class="border p-2">College of Information Technology and Computer Science</td>
                                 <td class="border p-2">Equipment</td>
                                 <td class="border p-2">Oct 15, 2023</td>
                                 <td class="border p-2">
@@ -149,7 +149,7 @@
                             <tr>
                                 <td class="border p-2 font-bold">REQ-2023-0123</td>
                                 <td class="border p-2">Prof. James Lee</td>
-                                <td class="border p-2">Engineering</td>
+                                <td class="border p-2">College of Engineering and Architecture</td>
                                 <td class="border p-2">Supplies</td>
                                 <td class="border p-2">Oct 14, 2023</td>
                                 <td class="border p-2">
@@ -170,7 +170,7 @@
                             <tr>
                                 <td class="border p-2 font-bold">REQ-2023-0122</td>
                                 <td class="border p-2">Dean Robert Garcia</td>
-                                <td class="border p-2">Business School</td>
+                                <td class="border p-2">College of Business Administration</td>
                                 <td class="border p-2">Furniture</td>
                                 <td class="border p-2">Oct 13, 2023</td>
                                 <td class="border p-2">
@@ -198,40 +198,60 @@
     </div>
 
     <script>
-        // Line Chart
+        // Line Chart: Requests Over Time by Department
         const ctxLine = document.getElementById('lineChart').getContext('2d');
         new Chart(ctxLine, {
             type: 'line',
             data: {
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                datasets: [{
-                    label: 'Requests',
-                    data: [12, 19, 14, 17, 22, 18, 24],
-                    borderColor: '#dc2626',
-                    backgroundColor: 'rgba(220,38,38,0.1)',
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#dc2626'
-                }]
+                datasets: [
+                    {
+                        label: 'CBA',
+                        data: [5, 7, 6, 8, 7, 6, 9],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59,130,246,0.08)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#3b82f6'
+                    },
+                    {
+                        label: 'CEA',
+                        data: [4, 6, 5, 7, 6, 5, 7],
+                        borderColor: '#f59e42',
+                        backgroundColor: 'rgba(245,158,66,0.08)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#f59e42'
+                    },
+                    {
+                        label: 'CITCS',
+                        data: [3, 4, 3, 5, 4, 3, 5],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16,185,129,0.08)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#10b981'
+                    }
+                ]
             },
             options: {
                 responsive: true,
-                plugins: { legend: { display: false } },
+                plugins: { legend: { position: 'bottom' } },
                 scales: {
                     y: { beginAtZero: true }
                 }
             }
         });
 
-        // Pie Chart
+        // Pie Chart: Requests by Academic Department
         const ctxPie = document.getElementById('pieChart').getContext('2d');
         new Chart(ctxPie, {
             type: 'pie',
             data: {
-                labels: ['Pending', 'Approved', 'Rejected'],
+                labels: ['CBA', 'CEA', 'CITCS'],
                 datasets: [{
-                    data: [18, 95, 7],
-                    backgroundColor: ['#facc15', '#22c55e', '#64748b'],
+                    data: [40, 35, 25],
+                    backgroundColor: ['#3b82f6', '#f59e42', '#10b981'],
                     borderWidth: 1
                 }]
             },
