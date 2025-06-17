@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - New Request</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-red-900 text-white h-screen flex flex-col fixed top-0 left-0 z-30">
+            <div class="p-6">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <h1 class="text-center text-lg font-bold mt-4">UC CRMS</h1>
+                <!-- Admin Info -->
+                <div class="mt-4 text-center flex flex-col items-center">
+                    <div class="flex items-center justify-center mb-1">
+                        <svg class="w-6 h-6 mr-2 text-red-200" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.7 0 4.5-2.2 4.5-4.5S14.7 3 12 3 7.5 5.2 7.5 7.5 9.3 12 12 12zm0 2c-3 0-9 1.5-9 4.5V21h18v-2.5c0-3-6-4.5-9-4.5z"/>
+                        </svg>
+                        <div class="text-sm font-semibold">Admin User</div>
+                    </div>
+                    <div class="text-xs text-red-200">Logistics Management Office</div>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="space-y-2 px-4">
+                    <li><a href="admin-dashboard.html" class="block py-2 px-4 rounded hover:bg-red-700">Dashboard</a></li>
+                    <li><a href="admin-new-request.html" class="block py-2 px-4 rounded bg-red-700">New Request</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">My Requests</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Department Requests</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Reports</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2">
+                <a href="#" class="block py-2 px-4 rounded bg-gray-300 text-red-800 hover:bg-gray-400 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6 ml-64">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6 bg-white bg-opacity-90 sticky top-0 z-20 p-4 rounded shadow">
+                <div>
+                    <h1 class="text-2xl font-bold text-red-900">Centralized Request Monitoring System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">Admin User</span>
+                    <button class="text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Form Section -->
+            <section class="bg-white p-6 rounded shadow">
+                <h2 class="text-xl font-bold mb-4 text-red-900">Create New Request</h2>
+                <p class="text-gray-600 mb-6">Fill out the form below to submit a new request to the Logistics Management Office</p>
+                <form>
+                    <!-- Request Information Header -->
+                    <h3 class="text-lg font-semibold mb-2 mt-4">Request Information</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Activity Title</label>
+                            <input type="text" placeholder="Enter a Request..." class="border rounded px-4 py-2 w-full">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Request Type</label>
+                            <select class="border rounded px-4 py-2 w-full">
+                                <option>Select a request type...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Department Information Header -->
+                    <h3 class="text-lg font-semibold mb-2 mt-4">Department Information</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Department</label>
+                            <select class="border rounded px-4 py-2 w-full">
+                                <option>Select your department...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Attach Approved Budget (if applicable)</label>
+                            <input type="text" placeholder="Enter Location..." class="border rounded px-4 py-2 w-full">
+                        </div>
+                    </div>
+
+                    <!-- Request Timeline -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Request Date</label>
+                            <input type="date" class="border rounded px-4 py-2 w-full">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">Needed By</label>
+                            <input type="date" class="border rounded px-4 py-2 w-full">
+                        </div>
+                    </div>
+                    <!-- Priority Level Radio Buttons -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2">Priority Level</label>
+                        <div class="flex items-center space-x-6">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="low" class="form-radio text-green-600">
+                                <span class="ml-2">Low</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="medium" class="form-radio text-yellow-500">
+                                <span class="ml-2">Medium</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="priority" value="high" class="form-radio text-red-600">
+                                <span class="ml-2">High</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2">Purpose of Request</label>
+                        <textarea placeholder="Enter purpose..." class="border rounded px-4 py-2 w-full"></textarea>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Select Items Section -->
+            <section class="bg-white p-6 rounded shadow mt-6">
+                <h2 class="text-xl font-bold mb-4 text-red-900">Select Items</h2>
+                <p class="text-gray-600 mb-6">Choose items in the Inventory below or search for specific items</p>
+                <div class="flex space-x-4 mb-6">
+                    <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">All Items</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Office Supplies</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Equipment</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Furniture</button>
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">A4 Bond Paper</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-red-600 font-bold">In stock: 200</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <!-- Stepper -->
+                            <button onclick="decrement('item1')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item1" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item1')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <!-- Repeat similar blocks for other items -->
+                </div>
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="text-lg font-bold mb-4">Can't find what you need?</h3>
+                    <p class="text-gray-600 mb-4">Add a custom item request below:</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Item name" class="border rounded px-4 py-2 w-full">
+                        <input type="number" placeholder="Quantity" class="border rounded px-4 py-2 w-full">
+                    </div>
+                    <!-- Image upload for custom item -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700 font-bold mb-2">Upload a picture (optional)</label>
+                        <input type="file" accept="image/*" class="border rounded px-4 py-2 w-full">
+                    </div>
+                    <button class="bg-red-600 text-white px-4 py-2 rounded mt-4 hover:bg-red-700">Add custom item</button>
+                </div>
+
+                <!-- Submit and Cancel Buttons -->
+                <div class="flex justify-end space-x-4 mt-6">
+                    <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Submit</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function increment(id) {
+            const input = document.getElementById(id);
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrement(id) {
+            const input = document.getElementById(id);
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>
+</body>
+</html>
