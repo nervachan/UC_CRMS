@@ -92,7 +92,7 @@
                         </div>
                         <div>
                             <label class="block text-gray-700 font-bold mb-2">Attach Approved Budget (if applicable)</label>
-                            <input type="text" placeholder="Enter Location..." class="border rounded px-4 py-2 w-full">
+                            <input type="file" class="border rounded px-4 py-2 w-full">
                         </div>
                     </div>
 
@@ -154,7 +154,97 @@
                             <button onclick="increment('item1')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
-                    <!-- Repeat similar blocks for other items -->
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Blue Ballpoint Pens</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-green-600 font-bold">In stock: 120</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item2')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item2" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item2')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Staples</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-yellow-600 font-bold">Low stock: 8</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item3')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item3" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item3')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Stamp Pad</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-red-600 font-bold">Out of stock</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button disabled class="bg-gray-200 text-gray-400 px-2 py-1 rounded cursor-not-allowed">-</button>
+                            <input id="item4" type="number" value="0" min="0" class="border rounded w-12 text-center bg-gray-100" disabled>
+                            <button disabled class="bg-gray-200 text-gray-400 px-2 py-1 rounded cursor-not-allowed">+</button>
+                        </div>
+                    </div>
+                    <!-- Additional items -->
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Yellow Legal Pad</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-green-600 font-bold">In stock: 60</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item5')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item5" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item5')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Whiteboard Marker</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-yellow-600 font-bold">Low stock: 5</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item6')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item6" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item6')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">USB Flash Drive 16GB</h3>
+                        <p class="text-gray-600">Category: IT Supplies</p>
+                        <p class="text-green-600 font-bold">In stock: 30</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item7')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item7" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item7')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Ethernet Cable</h3>
+                        <p class="text-gray-600">Category: IT Supplies</p>
+                        <p class="text-green-600 font-bold">In stock: 15</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item8')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item8" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item8')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Filing Folder</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-green-600 font-bold">In stock: 100</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="decrement('item9')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
+                            <input id="item9" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <button onclick="increment('item9')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
+                        </div>
+                    </div>
+                    <div class="border rounded p-4">
+                        <h3 class="text-lg font-bold">Correction Tape</h3>
+                        <p class="text-gray-600">Category: Office Supplies</p>
+                        <p class="text-red-600 font-bold">Out of stock</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button disabled class="bg-gray-200 text-gray-400 px-2 py-1 rounded cursor-not-allowed">-</button>
+                            <input id="item10" type="number" value="0" min="0" class="border rounded w-12 text-center bg-gray-100" disabled>
+                            <button disabled class="bg-gray-200 text-gray-400 px-2 py-1 rounded cursor-not-allowed">+</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="mt-6 border-t pt-6">
                     <h3 class="text-lg font-bold mb-4">Can't find what you need?</h3>
