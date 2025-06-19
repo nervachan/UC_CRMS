@@ -62,7 +62,7 @@
                 <h2 class="text-xl font-bold mb-4">Create New Request</h2>
                 <p class="text-gray-600 mb-6">Fill out the form below to submit a new request to the Logistics Management Office</p>
                
-                <form>
+                <form id="requestForm">
                     <!-- Request Information Header -->
                     <h3 class="text-lg font-semibold mb-2 mt-4">Request Information</h3>
                     <!-- Request Information -->
@@ -80,14 +80,23 @@
                     </div>
 
                     <!-- Department Information Header -->
-                    <h3 class="text-lg font-semibold mb-2 mt-4">Department Information</h3>
+                    <h3 class="text-lg font-semibold mb-2 mt-4">Budget Information</h3>
                     <!-- Department Information -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         
                         <div>
-                            <label class="block text-gray-700 font-bold mb-2">Department</label>
+                            <label class="block text-gray-700 font-bold mb-2">Charge To</label>
                             <select class="border rounded px-4 py-2 w-full">
-                                <option>Select your department...</option>
+                                <option>Choose from the list...</option>
+                                <option>Office Supplies</option>
+                                <option>Cleaning Materials</option>
+                                <option>Medicine supplies and Equipment</option>
+                                <option>Sports supplies and Equipment</option>
+                                <option>Seminars and Conferences</option>
+                                <option>Repairs and Maintenance</option>
+
+
+
                             </select>
                         </div>
                         <div>
@@ -150,7 +159,7 @@
                         <div class="flex items-center space-x-2 mt-2">
                             <!-- Stepper -->
                             <button onclick="decrement('item1')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item1" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item1" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item1')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -160,7 +169,7 @@
                         <p class="text-green-600 font-bold">In stock: 120</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item2')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item2" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item2" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item2')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -170,7 +179,7 @@
                         <p class="text-yellow-600 font-bold">Low stock: 8</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item3')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item3" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item3" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item3')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -191,7 +200,7 @@
                         <p class="text-green-600 font-bold">In stock: 60</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item5')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item5" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item5" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item5')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -201,7 +210,7 @@
                         <p class="text-yellow-600 font-bold">Low stock: 5</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item6')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item6" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item6" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item6')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -211,7 +220,7 @@
                         <p class="text-green-600 font-bold">In stock: 30</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item7')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item7" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item7" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item7')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -221,7 +230,7 @@
                         <p class="text-green-600 font-bold">In stock: 15</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item8')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item8" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item8" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item8')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -231,7 +240,7 @@
                         <p class="text-green-600 font-bold">In stock: 100</p>
                         <div class="flex items-center space-x-2 mt-2">
                             <button onclick="decrement('item9')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">-</button>
-                            <input id="item9" type="number" value="1" min="1" class="border rounded w-12 text-center">
+                            <input id="item9" type="number" value="0" min="0" class="border rounded w-12 text-center">
                             <button onclick="increment('item9')" class="bg-gray-200 text-gray-700 px-2 py-1 rounded">+</button>
                         </div>
                     </div>
@@ -264,10 +273,90 @@
                 <!-- Submit and Cancel Buttons -->
                 <div class="flex justify-end space-x-4 mt-6">
                     <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
-                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit</button>
+                    <button type="button" id="reviewBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Review and Submit</button>
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="reviewModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded shadow-lg p-8 w-full max-w-2xl relative">
+            <button id="closeModalBtn" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl leading-none">&times;</button>
+            <h2 class="text-xl font-bold mb-4">Review Your Request</h2>
+            <div class="space-y-6">
+                <!-- Request Information Card -->
+                <div class="bg-gray-50 rounded p-6 mb-2">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <div class="text-gray-500">Request Title:</div>
+                            <div class="font-semibold" id="modalReqTitle">-</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Request Type:</div>
+                            <div class="font-semibold" id="modalReqType">-</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Department:</div>
+                            <div class="font-semibold" id="modalDepartment">-</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Delivery Location:</div>
+                            <div class="font-semibold" id="modalDeliveryLoc">-</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Request Date:</div>
+                            <div class="font-semibold" id="modalReqDate">-</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-500">Needed By:</div>
+                            <div class="font-semibold" id="modalNeededBy">-</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-gray-500">Purpose:</div>
+                            <div class="font-semibold" id="modalPurpose">-</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Selected Items Table -->
+                <div>
+                    <div class="font-semibold mb-2">Selected Items</div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border rounded">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-2 text-left font-semibold">ITEM</th>
+                                    <th class="px-4 py-2 text-left font-semibold">CATEGORY</th>
+                                    <th class="px-4 py-2 text-left font-semibold">QUANTITY</th>
+                                    <th class="px-4 py-2 text-left font-semibold">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modalItemsTable">
+                                <!-- Filled by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Additional Notes -->
+                <div>
+                    <div class="font-semibold mb-1">Additional Notes (Optional)</div>
+                    <textarea id="modalNotes" class="border rounded px-4 py-2 w-full" placeholder="Any additional information for the Logistics Management Office..."></textarea>
+                </div>
+                <!-- Terms and Conditions -->
+                <div class="flex items-start space-x-2">
+                    <input id="modalAgree" type="checkbox" class="mt-1">
+                    <label for="modalAgree" class="text-xs text-gray-700 select-none">
+                        <span class="font-semibold">I agree to the terms and conditions</span><br>
+                        <span class="text-gray-500">I understand that submitting this request does not guarantee approval, and that all requests are subject to review by the Logistics Management Office.</span>
+                    </label>
+                </div>
+                <!-- Buttons -->
+                <div class="flex justify-between mt-4">
+                    <button id="modalBackBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Back</button>
+                    <button id="modalSubmitBtn" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Submit Request</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -278,10 +367,198 @@
 
         function decrement(id) {
             const input = document.getElementById(id);
-            if (parseInt(input.value) > 1) {
+            if (parseInt(input.value) > 0) {
                 input.value = parseInt(input.value) - 1;
             }
         }
+
+        // Wait for DOM to be fully loaded before attaching event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('reviewBtn').addEventListener('click', function() {
+                // Form fields
+                const form = document.getElementById('requestForm');
+                const activityTitle = form.querySelector('input[type="text"]').value;
+                const requestType = form.querySelector('select').value;
+                const chargeTo = form.querySelectorAll('select')[1].value;
+                const budgetFile = form.querySelector('input[type="file"]')?.files[0]?.name || '';
+                const requestDate = form.querySelector('input[type="date"]').value;
+                const neededBy = form.querySelectorAll('input[type="date"]')[1].value;
+                const priority = form.querySelector('input[name="priority"]:checked')?.value || '';
+                const purpose = form.querySelector('textarea').value;
+
+                // Items section
+                const items = [
+                    { id: 'item1', name: 'A4 Bond Paper', category: 'Office Supplies', status: 'In Stock: 200' },
+                    { id: 'item2', name: 'Blue Ballpoint Pens', category: 'Office Supplies', status: 'In Stock: 120' },
+                    { id: 'item3', name: 'Staples', category: 'Office Supplies', status: 'Low Stock: 8' },
+                    { id: 'item4', name: 'Stamp Pad', category: 'Office Supplies', status: 'Out of Stock' },
+                    { id: 'item5', name: 'Yellow Legal Pad', category: 'Office Supplies', status: 'In Stock: 60' },
+                    { id: 'item6', name: 'Whiteboard Marker', category: 'Office Supplies', status: 'Low Stock: 5' },
+                    { id: 'item7', name: 'USB Flash Drive 16GB', category: 'IT Supplies', status: 'In Stock: 30' },
+                    { id: 'item8', name: 'Ethernet Cable', category: 'IT Supplies', status: 'In Stock: 15' },
+                    { id: 'item9', name: 'Filing Folder', category: 'Office Supplies', status: 'In Stock: 100' },
+                    { id: 'item10', name: 'Correction Tape', category: 'Office Supplies', status: 'Out of Stock' }
+                ];
+                const selectedItems = [];
+                items.forEach(item => {
+                    const input = document.getElementById(item.id);
+                    if (input && !input.disabled && parseInt(input.value) > 0) {
+                        selectedItems.push({
+                            name: item.name,
+                            category: item.category,
+                            quantity: input.value,
+                            status: item.status
+                        });
+                    }
+                });
+
+                // Custom item
+                const customItemName = document.querySelector('section .grid input[type="text"][placeholder="Item name"]')?.value;
+                const customItemQty = document.querySelector('section .grid input[type="number"][placeholder="Quantity"]')?.value;
+                const customItemFile = document.querySelector('section input[type="file"][accept="image/*"]')?.files[0]?.name || '';
+                if (customItemName && customItemQty && parseInt(customItemQty) > 0) {
+                    selectedItems.push({
+                        name: customItemName,
+                        category: 'Custom',
+                        quantity: customItemQty,
+                        status: customItemFile ? 'With Image' : 'Custom'
+                    });
+                }
+
+                // Fill modal fields with correct labels
+                document.getElementById('modalReqTitle').textContent = activityTitle || '-';
+                document.getElementById('modalReqType').textContent = requestType || '-';
+                document.getElementById('modalDepartment').textContent = chargeTo || '-';
+                document.getElementById('modalDeliveryLoc').textContent = budgetFile || '-';
+                document.getElementById('modalReqDate').textContent = requestDate || '-';
+                document.getElementById('modalNeededBy').textContent = neededBy || '-';
+                document.getElementById('modalPurpose').textContent = purpose || '-';
+
+                // Items table
+                let itemsHtml = '';
+                if (selectedItems.length) {
+                    selectedItems.forEach(i => {
+                        itemsHtml += `<tr>
+                            <td class="px-4 py-2 border-t">${i.name}</td>
+                            <td class="px-4 py-2 border-t">${i.category}</td>
+                            <td class="px-4 py-2 border-t">${i.quantity}</td>
+                            <td class="px-4 py-2 border-t">${i.status}</td>
+                        </tr>`;
+                    });
+                } else {
+                    itemsHtml = `<tr><td colspan="4" class="px-4 py-2 border-t text-center text-gray-400">No items selected</td></tr>`;
+                }
+                document.getElementById('modalItemsTable').innerHTML = itemsHtml;
+
+                // Reset notes and checkbox
+                document.getElementById('modalNotes').value = '';
+                document.getElementById('modalAgree').checked = false;
+
+                document.getElementById('reviewModal').classList.remove('hidden');
+            });
+
+            // Close modal on X, Back, or Close
+            var closeModalBtn = document.getElementById('closeModalBtn');
+            var modalCloseBtn = document.getElementById('modalCloseBtn');
+            var modalBackBtn = document.getElementById('modalBackBtn');
+            if (closeModalBtn) closeModalBtn.onclick = function() {
+                document.getElementById('reviewModal').classList.add('hidden');
+            };
+            if (modalCloseBtn) modalCloseBtn.onclick = function() {
+                document.getElementById('reviewModal').classList.add('hidden');
+            };
+            if (modalBackBtn) modalBackBtn.onclick = function() {
+                document.getElementById('reviewModal').classList.add('hidden');
+            };
+
+            // Submit Request button
+            var modalSubmitBtn = document.getElementById('modalSubmitBtn');
+            if (modalSubmitBtn) modalSubmitBtn.onclick = function() {
+                if (!document.getElementById('modalAgree').checked) {
+                    alert('You must agree to the terms and conditions.');
+                    return;
+                }
+
+                // Gather all data to store
+                const form = document.getElementById('requestForm');
+                const activityTitle = form.querySelector('input[type="text"]').value;
+                const requestType = form.querySelector('select').value;
+                const chargeTo = form.querySelectorAll('select')[1].value;
+                const budgetFile = form.querySelector('input[type="file"]')?.files[0]?.name || '';
+                const requestDate = form.querySelector('input[type="date"]').value;
+                const neededBy = form.querySelectorAll('input[type="date"]')[1].value;
+                const priority = form.querySelector('input[name="priority"]:checked')?.value || '';
+                const purpose = form.querySelector('textarea').value;
+                const notes = document.getElementById('modalNotes').value;
+
+                // Items section
+                const items = [
+                    { id: 'item1', name: 'A4 Bond Paper', category: 'Office Supplies', status: 'In Stock: 200' },
+                    { id: 'item2', name: 'Blue Ballpoint Pens', category: 'Office Supplies', status: 'In Stock: 120' },
+                    { id: 'item3', name: 'Staples', category: 'Office Supplies', status: 'Low Stock: 8' },
+                    { id: 'item4', name: 'Stamp Pad', category: 'Office Supplies', status: 'Out of Stock' },
+                    { id: 'item5', name: 'Yellow Legal Pad', category: 'Office Supplies', status: 'In Stock: 60' },
+                    { id: 'item6', name: 'Whiteboard Marker', category: 'Office Supplies', status: 'Low Stock: 5' },
+                    { id: 'item7', name: 'USB Flash Drive 16GB', category: 'IT Supplies', status: 'In Stock: 30' },
+                    { id: 'item8', name: 'Ethernet Cable', category: 'IT Supplies', status: 'In Stock: 15' },
+                    { id: 'item9', name: 'Filing Folder', category: 'Office Supplies', status: 'In Stock: 100' },
+                    { id: 'item10', name: 'Correction Tape', category: 'Office Supplies', status: 'Out of Stock' }
+                ];
+                const selectedItems = [];
+                items.forEach(item => {
+                    const input = document.getElementById(item.id);
+                    if (input && !input.disabled && parseInt(input.value) > 0) {
+                        selectedItems.push({
+                            name: item.name,
+                            category: item.category,
+                            quantity: input.value,
+                            status: item.status
+                        });
+                    }
+                });
+
+                // Custom item
+                const customItemName = document.querySelector('section .grid input[type="text"][placeholder="Item name"]')?.value;
+                const customItemQty = document.querySelector('section .grid input[type="number"][placeholder="Quantity"]')?.value;
+                const customItemFile = document.querySelector('section input[type="file"][accept="image/*"]')?.files[0]?.name || '';
+                if (customItemName && customItemQty && parseInt(customItemQty) > 0) {
+                    selectedItems.push({
+                        name: customItemName,
+                        category: 'Custom',
+                        quantity: customItemQty,
+                        status: customItemFile ? 'With Image' : 'Custom'
+                    });
+                }
+
+                // Build request object with correct keys for labels
+                const requestData = {
+                    "Activity Title": activityTitle,
+                    "Request Type": requestType,
+                    "Charge To": chargeTo,
+                    "Budget File": budgetFile,
+                    "Request Date": requestDate,
+                    "Needed By": neededBy,
+                    "Priority Level": priority,
+                    "Purpose of Request": purpose,
+                    "Additional Notes": notes,
+                    "Items": selectedItems
+                };
+
+                // Store in localStorage (append to array)
+                let requests = [];
+                try {
+                    requests = JSON.parse(localStorage.getItem('uc_crms_requests') || '[]');
+                } catch (e) {
+                    requests = [];
+                }
+                requests.push(requestData);
+                localStorage.setItem('uc_crms_requests', JSON.stringify(requests));
+
+                alert('Your request has been submitted!');
+                document.getElementById('reviewModal').classList.add('hidden');
+                window.location.href = 'user-login.html';
+            };
+        });
     </script>
 </body>
 </html>

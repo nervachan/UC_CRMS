@@ -1,0 +1,6 @@
+ if (email === 'admin01@uc-crms.com') {
+                window.location.href = 'admin-dashboard.html';
+            } else if (email === 'user01@uc-crms.com') {
+                window.location.href = 'user-login.html';
+            } else if (email === 'finance01@uc-crms.com') {
+                window.location.href = 'finance-dashboard.html';}
