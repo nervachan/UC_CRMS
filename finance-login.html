@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Office Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-slate-900 text-white h-screen flex flex-col fixed top-0 left-0 z-30">
+            <div class="p-6">
+                <h1 class="text-xl font-bold mb-6">Finance Office</h1>
+            </div>
+            <nav class="flex-grow">
+                <ul class="space-y-1 px-2">
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded bg-slate-800 font-semibold">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"></path></svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded hover:bg-slate-800">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m16 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0H4"></path></svg>
+                            Inventory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded hover:bg-slate-800 font-semibold bg-blue-600">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-6h6v6m-6 0a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2m-6 0h6"></path></svg>
+                            My Requests
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded hover:bg-slate-800">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 10c-2.21 0-4-1.79-4-4h2a2 2 0 004 0h2c0 2.21-1.79 4-4 4z"></path></svg>
+                            Budget
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded hover:bg-slate-800">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-6h6v6m-6 0a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2m-6 0h6"></path></svg>
+                            Reports
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center py-2 px-3 rounded hover:bg-slate-800">
+                            <svg class="w-5 h-5 mr-3 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2 mt-4">
+                <div class="bg-slate-800 rounded p-3 mb-3">
+                    <div class="flex items-center">
+                        <span class="h-2 w-2 bg-green-400 rounded-full mr-2"></span>
+                        <span class="text-xs">Online</span>
+                    </div>
+                    <div class="text-xs text-slate-400 mt-1">Last updated: Today, 10:45 AM</div>
+                </div>
+                <a href="#" class="block py-2 px-4 rounded bg-red-600 hover:bg-red-700 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-8 ml-64">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold">Request Monitoring System</h1>
+                <div class="flex items-center space-x-3">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Finance Officer</span>
+                    <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>
+                </div>
+            </header>
+
+            <!-- Dashboard Cards -->
+            <section class="grid grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
+                    <div class="text-gray-500 text-sm mb-2">Pending Requests</div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-bold">12</span>
+                        <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-xs font-semibold">+8% from last week</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
+                    <div class="text-gray-500 text-sm mb-2">Approved Requests</div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-bold">45</span>
+                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-semibold">+12% from last week</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-500 text-sm">Rejected Requests</span>
+                        <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">REJECTED REQUESTS</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold">₱125,450</span>
+                        <span class="text-xs text-gray-400">remaining</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-500 text-sm">Total Requests</span>
+                        <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">TOTAL REQUESTS</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-3xl font-bold">57</span>
+                        <span class="text-xs text-red-600">↑5% from last month</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Request Management Table -->
+            <section class="bg-white rounded shadow p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex space-x-2">
+                        <input type="text" placeholder="Search requests..." class="border rounded px-3 py-2 text-sm w-64">
+                        <select class="border rounded px-2 py-2 text-sm">
+                            <option>All Statuses</option>
+                            <option>Pending</option>
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                        </select>
+                        <select class="border rounded px-2 py-2 text-sm">
+                            <option>All Departments</option>
+                            <option>Human Resources</option>
+                            <option>IT Department</option>
+                            <option>Marketing</option>
+                            <option>Operations</option>
+                        </select>
+                    </div>
+                    <button class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"></path></svg>
+                        Export
+                    </button>
+                </div>
+                <table class="w-full border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="py-2 px-3 text-left font-semibold">Request ID</th>
+                            <th class="py-2 px-3 text-left font-semibold">Requester</th>
+                            <th class="py-2 px-3 text-left font-semibold">Department</th>
+                            <th class="py-2 px-3 text-left font-semibold">Items</th>
+                            <th class="py-2 px-3 text-left font-semibold">Total Amount</th>
+                            <th class="py-2 px-3 text-left font-semibold">Date Requested</th>
+                            <th class="py-2 px-3 text-left font-semibold">Status</th>
+                            <th class="py-2 px-3 text-left font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t">
+                            <td class="py-2 px-3">REQ-2023-0045</td>
+                            <td class="py-2 px-3">Maria Santos</td>
+                            <td class="py-2 px-3">Human Resources</td>
+                            <td class="py-2 px-3">3 item(s)</td>
+                            <td class="py-2 px-3">₱3,050.00</td>
+                            <td class="py-2 px-3">2023-06-15</td>
+                            <td class="py-2 px-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Pending</span></td>
+                            <td class="py-2 px-3 flex space-x-2">
+                                <a href="#" title="View"><svg class="w-5 h-5 text-blue-600 hover:text-blue-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></a>
+                                <a href="#" title="Print"><svg class="w-5 h-5 text-slate-600 hover:text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18v4h12v-4"/><path d="M6 14h12"/><path d="M6 10h12"/></svg></a>
+                            </td>
+                        </tr>
+                        <!-- ...repeat for other rows as needed... -->
+                        <tr class="border-t">
+                            <td class="py-2 px-3">REQ-2023-0044</td>
+                            <td class="py-2 px-3">Juan Cruz</td>
+                            <td class="py-2 px-3">IT Department</td>
+                            <td class="py-2 px-3">2 item(s)</td>
+                            <td class="py-2 px-3">₱9,250.00</td>
+                            <td class="py-2 px-3">2023-06-14</td>
+                            <td class="py-2 px-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Approved</span></td>
+                            <td class="py-2 px-3 flex space-x-2">
+                                <a href="#" title="View"><svg class="w-5 h-5 text-blue-600 hover:text-blue-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></a>
+                                <a href="#" title="Print"><svg class="w-5 h-5 text-slate-600 hover:text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18v4h12v-4"/><path d="M6 14h12"/><path d="M6 10h12"/></svg></a>
+                            </td>
+                        </tr>
+                        <!-- ...add more rows as needed... -->
+                    </tbody>
+                </table>
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-sm text-gray-500">Showing 1 to 10 of 45 results</span>
+                    <div class="flex space-x-1">
+                        <button class="px-2 py-1 rounded border text-gray-500 bg-white">&lt;</button>
+                        <button class="px-2 py-1 rounded border bg-blue-600 text-white">1</button>
+                        <button class="px-2 py-1 rounded border bg-white text-gray-700">2</button>
+                        <button class="px-2 py-1 rounded border bg-white text-gray-700">3</button>
+                        <span class="px-2 py-1">...</span>
+                        <button class="px-2 py-1 rounded border bg-white text-gray-700">5</button>
+                        <button class="px-2 py-1 rounded border text-gray-500 bg-white">&gt;</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
