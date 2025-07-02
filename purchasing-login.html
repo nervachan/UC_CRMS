@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supply Request Approval Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+<div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-indigo-900 text-white h-screen flex flex-col fixed top-0 left-0 z-30">
+        <div class="p-6">
+            <div class="flex items-center space-x-2">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <span class="text-2xl font-bold tracking-tight">UC CRMS</span>
+            </div>
+            <div class="text-xs mt-1 text-indigo-200 tracking-widest">PURCHASING OFFICE</div>
+        </div>
+        <nav class="flex-grow overflow-y-auto">
+            <ul class="space-y-2 px-4">
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800 bg-indigo-800 font-semibold">Dashboard</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Pending Requests</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Approved Requests</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Rejected Requests</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Budget Overview</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Reports</a></li>
+                <li><a href="#" class="block py-2 px-4 rounded hover:bg-indigo-800">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="px-4 py-4 mt-auto flex items-center space-x-3 border-t border-indigo-800">
+            <div class="bg-indigo-700 rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">PO</div>
+            <div>
+                <div class="font-semibold text-sm">Purchasing Office</div>
+                <div class="text-xs text-indigo-200">Admin</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8 ml-64">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-6 bg-gradient-to-r from-indigo-700 to-indigo-500 text-white p-5 rounded shadow">
+            <div>
+                <h1 class="text-2xl font-bold">Supply Request Approval Dashboard</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search requests..." class="rounded px-3 py-1 text-sm text-gray-700 focus:outline-none focus:ring w-56">
+                    <span class="absolute right-2 top-2 text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-2-2"/>
+                        </svg>
+                    </span>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-6 py-2 rounded shadow" style="border:2px solid #222;">ADD REQUEST</button>
+                <div class="relative">
+                    <button class="focus:outline-none">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-4 gap-6 mb-6">
+            <div class="bg-white rounded shadow p-5 flex flex-col items-start">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-green-100 text-green-600 rounded-full p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 8v4l3 3"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-500 text-xs">Total Requests</span>
+                </div>
+                <div class="text-2xl font-bold mt-2">15</div>
+                <div class="text-green-600 text-xs mt-1">&#9650; 8% from last week</div>
+            </div>
+            <div class="bg-white rounded shadow p-5 flex flex-col items-start">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-yellow-100 text-yellow-600 rounded-full p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4l3 3"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-500 text-xs">Pending Approval</span>
+                </div>
+                <div class="text-2xl font-bold mt-2">7</div>
+                <div class="text-red-600 text-xs mt-1">&#9650; 12% from last week</div>
+            </div>
+            <div class="bg-white rounded shadow p-5 flex flex-col items-start">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-green-100 text-green-600 rounded-full p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-500 text-xs">Approved</span>
+                </div>
+                <div class="text-2xl font-bold mt-2">5</div>
+                <div class="text-green-600 text-xs mt-1">&#9650; 5% from last week</div>
+            </div>
+            <div class="bg-white rounded shadow p-5 flex flex-col items-start">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-red-100 text-red-600 rounded-full p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </span>
+                    <span class="text-gray-500 text-xs">Rejected</span>
+                </div>
+                <div class="text-2xl font-bold mt-2">3</div>
+                <div class="text-green-600 text-xs mt-1">&#9660; 2% from last week</div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded shadow p-5">
+                <div class="text-lg font-bold mb-2">Requests by Department</div>
+                <canvas id="barChart" height="180"></canvas>
+            </div>
+            <div class="bg-white rounded shadow p-5">
+                <div class="text-lg font-bold mb-2">Budget Allocation</div>
+                <div class="flex">
+                    <canvas id="donutChart" width="180" height="180"></canvas>
+                    <div class="ml-6 flex flex-col justify-center text-sm">
+                        <div class="flex items-center mb-2"><span class="inline-block w-4 h-4 rounded-full mr-2" style="background:#a78bfa"></span>IT</div>
+                        <div class="flex items-center mb-2"><span class="inline-block w-4 h-4 rounded-full mr-2" style="background:#f87171"></span>HR</div>
+                        <div class="flex items-center mb-2"><span class="inline-block w-4 h-4 rounded-full mr-2" style="background:#fbbf24"></span>Finance</div>
+                        <div class="flex items-center mb-2"><span class="inline-block w-4 h-4 rounded-full mr-2" style="background:#34d399"></span>Marketing</div>
+                        <div class="flex items-center"><span class="inline-block w-4 h-4 rounded-full mr-2" style="background:#60a5fa"></span>Operations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Approvals Table -->
+        <div class="bg-white rounded shadow p-5">
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-lg font-bold">Pending Approvals</div>
+                <div class="flex items-center space-x-2">
+                    <button class="bg-blue-500 text-white px-4 py-1 rounded font-semibold border border-black" style="background:#1e90ff;">IN PHILIPPINE PESO</button>
+                    <select class="border rounded px-2 py-1 text-sm">
+                        <option>All Departments</option>
+                        <option>IT</option>
+                        <option>HR</option>
+                        <option>Finance</option>
+                        <option>Marketing</option>
+                        <option>Operations</option>
+                    </select>
+                    <select class="border rounded px-2 py-1 text-sm">
+                        <option>All Priorities</option>
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                    </select>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm border rounded">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">REQUEST ID</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">REQUESTER</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">DEPARTMENT</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">ITEM</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">QUANTITY</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">EST. COST</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">PRIORITY</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">DATE</th>
+                            <th class="px-4 py-2 bg-gray-100 text-gray-700 font-bold">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-2 border-t">REQ-001</td>
+                            <td class="px-4 py-2 border-t">John Smith</td>
+                            <td class="px-4 py-2 border-t">IT</td>
+                            <td class="px-4 py-2 border-t">Laptop</td>
+                            <td class="px-4 py-2 border-t">2</td>
+                            <td class="px-4 py-2 border-t">&#8369;2400.00</td>
+                            <td class="px-4 py-2 border-t"><span class="bg-red-200 text-red-800 px-2 py-1 rounded text-xs">High</span></td>
+                            <td class="px-4 py-2 border-t">2023-06-15</td>
+                            <td class="px-4 py-2 border-t"><button class="text-blue-600 hover:underline" title="View">&#128065;</button></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 border-t">REQ-002</td>
+                            <td class="px-4 py-2 border-t">Sarah Johnson</td>
+                            <td class="px-4 py-2 border-t">HR</td>
+                            <td class="px-4 py-2 border-t">Office Chair</td>
+                            <td class="px-4 py-2 border-t">5</td>
+                            <td class="px-4 py-2 border-t">&#8369;750.00</td>
+                            <td class="px-4 py-2 border-t"><span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">Medium</span></td>
+                            <td class="px-4 py-2 border-t">2023-06-18</td>
+                            <td class="px-4 py-2 border-t"><button class="text-blue-600 hover:underline" title="View">&#128065;</button></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 border-t">REQ-006</td>
+                            <td class="px-4 py-2 border-t">Lisa Anderson</td>
+                            <td class="px-4 py-2 border-t">IT</td>
+                            <td class="px-4 py-2 border-t">Monitor</td>
+                            <td class="px-4 py-2 border-t">3</td>
+                            <td class="px-4 py-2 border-t">&#8369;900.00</td>
+                            <td class="px-4 py-2 border-t"><span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">Medium</span></td>
+                            <td class="px-4 py-2 border-t">2023-06-28</td>
+                            <td class="px-4 py-2 border-t"><button class="text-blue-600 hover:underline" title="View">&#128065;</button></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 border-t">REQ-008</td>
+                            <td class="px-4 py-2 border-t">Jennifer Martinez</td>
+                            <td class="px-4 py-2 border-t">Finance</td>
+                            <td class="px-4 py-2 border-t">Filing Cabinet</td>
+                            <td class="px-4 py-2 border-t">4</td>
+                            <td class="px-4 py-2 border-t">&#8369;800.00</td>
+                            <td class="px-4 py-2 border-t"><span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">Low</span></td>
+                            <td class="px-4 py-2 border-t">2023-07-03</td>
+                            <td class="px-4 py-2 border-t"><button class="text-blue-600 hover:underline" title="View">&#128065;</button></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 border-t">REQ-010</td>
+                            <td class="px-4 py-2 border-t">Elizabeth Garcia</td>
+                            <td class="px-4 py-2 border-t">Operations</td>
+                            <td class="px-4 py-2 border-t">Barcode Scanner</td>
+                            <td class="px-4 py-2 border-t">5</td>
+                            <td class="px-4 py-2 border-t">&#8369;1250.00</td>
+                            <td class="px-4 py-2 border-t"><span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">Medium</span></td>
+                            <td class="px-4 py-2 border-t">2023-07-08</td>
+                            <td class="px-4 py-2 border-t"><button class="text-blue-600 hover:underline" title="View">&#128065;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <footer class="text-xs text-gray-400 text-center mt-8 mb-2">
+            &copy; 2023 SupplyTrack Purchasing Office Dashboard. All rights reserved.
+        </footer>
+    </main>
+</div>
+<script>
+    // Bar Chart
+    new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: ['IT', 'HR', 'Finance', 'Marketing', 'Operations'],
+            datasets: [{
+                label: 'Total Requests',
+                data: [10, 8, 7, 9, 6],
+                backgroundColor: ['#a78bfa', '#f87171', '#fbbf24', '#34d399', '#60a5fa']
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Donut Chart
+    new Chart(document.getElementById('donutChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['IT', 'HR', 'Finance', 'Marketing', 'Operations'],
+            datasets: [{
+                data: [10, 8, 7, 9, 6],
+                backgroundColor: ['#a78bfa', '#f87171', '#fbbf24', '#34d399', '#60a5fa']
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            cutout: '70%'
+        }
+    });
+</script>
+</body>
+</html>

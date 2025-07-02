@@ -28,7 +28,7 @@
                 <ul class="space-y-2 px-4">
                     <li><a href="user-login.html" class="block py-2 px-4 rounded hover:bg-green-700">Dashboard</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded bg-green-700">New Request</a></li>
-                    <li><a href="user-requests.html" class="block py-2 px-4 rounded hover:bg-green-700">View All Requests</a></li>
+                    <li><a href="user-requests.html" class="block py-2 px-4 rounded hover:bg-green-700">My Requests</a></li>
                     <li><a href="user-browse-inventory.html" class="block py-2 px-4 rounded hover:bg-green-700">Browse Inventory</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Reports</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-green-700">Help</a></li>
@@ -261,6 +261,19 @@
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" placeholder="Item name" class="border rounded px-4 py-2 w-full">
                         <input type="number" placeholder="Quantity" class="border rounded px-4 py-2 w-full">
+                        <select class="border rounded px-4 py-2 w-full">
+                            <option value="">Select unit...</option>
+                            <option value="pcs">pcs</option>
+                            <option value="box">box</option>
+                            <option value="ream">ream</option>
+                            <option value="pack">pack</option>
+                            <option value="set">set</option>
+                            <option value="roll">roll</option>
+                            <option value="bottle">bottle</option>
+                            <option value="liter">liter</option>
+                            <option value="kg">kg</option>
+                            <option value="meter">meter</option>
+                        </select>
                     </div>
                     <!-- Image upload for custom item -->
                     <div class="mt-4">
@@ -355,6 +368,32 @@
                     <button id="modalBackBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Back</button>
                     <button id="modalSubmitBtn" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Submit Request</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Submitted Modal -->
+    <div id="submittedModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md text-center relative">
+            <div class="flex flex-col items-center">
+                <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold mb-2">Request Submitted Successfully!</h2>
+                <p class="text-gray-600 mb-4">
+                    Your request has been submitted to the Logistics Management Office.<br>
+                    You will receive updates on the status of your request.
+                </p>
+                <div class="bg-gray-50 rounded p-4 mb-4 w-full">
+                    <div class="text-sm">
+                        <span class="font-semibold">Request ID:</span>
+                        <span class="text-green-600 font-bold" id="submittedReqId">#REQ-1025</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1" id="submittedReqDate">Submitted on: <script>document.write(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));</script></div>
+                </div>
+                <button id="backToDashboardBtn" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 w-full font-semibold">Back to Dashboard</button>
             </div>
         </div>
     </div>
@@ -554,8 +593,21 @@
                 requests.push(requestData);
                 localStorage.setItem('uc_crms_requests', JSON.stringify(requests));
 
-                alert('Your request has been submitted!');
+                // Generate a fake request ID and date for the modal
+                const reqId = "#REQ-" + (1000 + requests.length);
+                const today = new Date();
+                const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                document.getElementById('submittedReqId').textContent = reqId;
+                document.getElementById('submittedReqDate').textContent = "Submitted on: " + dateStr;
+
                 document.getElementById('reviewModal').classList.add('hidden');
+                document.getElementById('submittedModal').classList.remove('hidden');
+            };
+
+            // Back to Dashboard button
+            var backBtn = document.getElementById('backToDashboardBtn');
+            if (backBtn) backBtn.onclick = function() {
                 window.location.href = 'user-login.html';
             };
         });
