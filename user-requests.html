@@ -76,13 +76,13 @@
                             <tr>
                                 <td class="border p-2">#REQ-0124</td>
                                 <td class="border p-2">A4 Bond Paper x2, Stapler x1</td>
-                                <td class="border p-2">Reams,Units</td>
+                                <td class="border p-2"></td>
                                 <td class="border p-2">May 15, 2025</td>
                                 <td class="border p-2">
                                     <span class="text-yellow-600">Pending</span>
                                 </td>
                                 <td class="border p-2">
-                                    <a href="#" class="text-blue-600 hover:underline">View</a>
+                                    <a href="#" class="text-blue-600 hover:underline view-request-btn">View</a>
                                     <a href="#" class="text-red-600 hover:underline ml-2">Cancel</a>
                                 </td>
                             </tr>
@@ -94,4 +94,116 @@
         </main>
     </div>
 </body>
+<!-- Modal for viewing request details -->
+<div id="viewRequestModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg p-0 w-full max-w-2xl relative border-2 border-blue-300">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-6 py-4 border-b bg-blue-50 rounded-t-lg">
+            <h2 class="text-2xl font-bold text-blue-800">
+                Request Details - <span id="modalReqId" class="bg-blue-300 px-2 py-1 rounded text-white text-xl align-middle"></span>
+            </h2>
+            <button id="closeViewModalBtn" class="text-blue-700 hover:text-blue-900 text-3xl font-bold px-2 py-0 rounded transition">&times;</button>
+        </div>
+        <div class="px-6 py-4">
+            <div class="grid grid-cols-2 gap-4 mb-2">
+                <div>
+                    <div class="text-xs font-semibold text-gray-500 mb-1">Requested By</div>
+                    <div class="font-bold text-lg text-gray-800">Daphnie Pelaez</div>
+                </div>
+                <div>
+                    <div class="text-xs font-semibold text-gray-500 mb-1">Department</div>
+                    <div class="font-bold text-lg text-gray-800">College of Business Administration</div>
+                </div>
+                <div>
+                    <div class="text-xs font-semibold text-gray-500 mb-1">Request Date</div>
+                    <div class="font-bold text-md text-gray-800" id="modalReqDate"></div>
+                </div>
+                <div>
+                    <div class="text-xs font-semibold text-gray-500 mb-1">Status</div>
+                    <span id="modalReqStatus" class="inline-block bg-yellow-100 text-yellow-800 font-semibold px-3 py-1 rounded text-sm align-middle"></span>
+                </div>
+            </div>
+            <!-- Description -->
+            <div class="mt-4 mb-2">
+                <div class="text-xs font-semibold text-gray-500 mb-1">Request Description</div>
+                <div class="bg-gray-50 rounded px-4 py-2 text-gray-700">Request for office supplies needed for the new team members joining next week.</div>
+            </div>
+            <!-- Requested Items Table -->
+            <div class="mt-4">
+                <div class="text-xs font-semibold text-gray-500 mb-1">Requested Items</div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm border rounded">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2 text-left font-semibold">Item</th>
+                                <th class="px-4 py-2 text-left font-semibold">Quantity</th>
+                                <th class="px-4 py-2 text-left font-semibold">Unit</th>
+                                <th class="px-4 py-2 text-left font-semibold">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2 border-t">A4 Bond Paper</td>
+                                <td class="px-4 py-2 border-t">2</td>
+                                <td class="px-4 py-2 border-t text-blue-700 font-semibold underline cursor-pointer">Unit</td>
+                                <td class="px-4 py-2 border-t"><span class="bg-yellow-100 text-yellow-800 font-semibold px-2 py-1 rounded text-xs">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border-t">Stapler</td>
+                                <td class="px-4 py-2 border-t">1</td>
+                                <td class="px-4 py-2 border-t text-blue-700 font-semibold underline cursor-pointer">Unit</td>
+                                <td class="px-4 py-2 border-t"><span class="bg-yellow-100 text-yellow-800 font-semibold px-2 py-1 rounded text-xs">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Timeline -->
+            <div class="mt-6">
+                <div class="text-xs font-semibold text-gray-500 mb-1">Request Timeline</div>
+                <div class="space-y-3">
+                    <div class="flex items-start">
+                        <span class="w-4 h-4 rounded-full bg-blue-500 mt-1 mr-2"></span>
+                        <div>
+                            <div class="font-bold text-gray-800">Request Submitted</div>
+                            <div class="text-xs text-gray-600">May 15, 2023 - 09:30 AM</div>
+                            <div class="text-xs text-gray-500">Request for office supplies submitted by Daphnie Pelaez</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="w-4 h-4 rounded-full bg-yellow-400 mt-1 mr-2"></span>
+                        <div>
+                            <div class="font-bold text-gray-800">Processing</div>
+                            <div class="text-xs text-gray-600">May 17, 2023 - 02:45 PM</div>
+                            <div class="text-xs text-gray-500">Request being processed by Supply Department</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end mt-8">
+                <button id="closeViewModalBtn2" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.view-request-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Example: Fill modal with static data for now
+            document.getElementById('modalReqId').textContent = "#REQ-0124";
+            document.getElementById('modalReqDate').textContent = "May 15, 2025";
+            document.getElementById('modalReqStatus').textContent = "Pending";
+            document.getElementById('modalReqStatus').className = "inline-block bg-yellow-100 text-yellow-800 font-semibold px-3 py-1 rounded text-sm align-middle";
+            document.getElementById('viewRequestModal').classList.remove('hidden');
+        });
+    });
+    function closeModal() {
+        document.getElementById('viewRequestModal').classList.add('hidden');
+    }
+    document.getElementById('closeViewModalBtn').onclick = closeModal;
+    document.getElementById('closeViewModalBtn2').onclick = closeModal;
+});
+</script>
 </html>
