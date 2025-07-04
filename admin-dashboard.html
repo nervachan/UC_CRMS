@@ -115,7 +115,7 @@
                     <table class="min-w-full border-collapse">
                         <thead>
                             <tr class="bg-gray-100 text-xs uppercase">
-                                <th class="border p-2 font-bold text-left bg-blue-500 text-white w-32">Request No</th>
+                                <th class="border p-2 font-bold text-left">Request No</th>
                                 <th class="border p-2 font-bold text-left">Requester</th>
                                 <th class="border p-2 font-bold text-left">Department</th>
                                 <th class="border p-2 font-bold text-left">Request Type</th>
@@ -142,9 +142,9 @@
                                     </span>
                                 </td>
                                 <td class="border p-2">
-                                    <a href="#" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</a>
-                                    <a href="#" class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</a>
-                                    <a href="#" class="text-red-600 hover:underline text-xs font-semibold">Reject</a>
+                                    <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
+                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
+                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
                                 </td>
                             </tr>
                             <tr>
@@ -163,9 +163,9 @@
                                     </span>
                                 </td>
                                 <td class="border p-2">
-                                    <a href="#" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</a>
-                                    <a href="#" class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</a>
-                                    <a href="#" class="text-red-600 hover:underline text-xs font-semibold">Reject</a>
+                                    <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
+                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
+                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
                                 </td>
                             </tr>
                             <tr>
@@ -184,9 +184,9 @@
                                     </span>
                                 </td>
                                 <td class="border p-2">
-                                    <a href="#" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</a>
-                                    <a href="#" class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</a>
-                                    <a href="#" class="text-red-600 hover:underline text-xs font-semibold">Reject</a>
+                                    <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
+                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
+                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
                                 </td>
                             </tr>
                             <!-- ...more rows as needed... -->
@@ -198,6 +198,130 @@
         </main>
     </div>
 
+    <!-- View Request Details Modal -->
+    <div id="requestDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b p-4">
+                <h3 class="text-lg font-bold">Request Details</h3>
+                <button onclick="closeRequestDetails()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">Request Information</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><span class="text-gray-600">Request No:</span> <span id="modalRequestNo" class="font-medium">REQ-2023-0124</span></p>
+                            <p><span class="text-gray-600">Request Type:</span> <span id="modalRequestType" class="font-medium">Equipment</span></p>
+                            <p><span class="text-gray-600">Date Requested:</span> <span id="modalDate" class="font-medium">Oct 15, 2023</span></p>
+                            <p><span class="text-gray-600">Status:</span> <span id="modalStatus" class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-semibold">Pending</span></p>
+                            <p><span class="text-gray-600">Priority:</span> <span id="modalPriority" class="font-medium">High</span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Requester Information</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><span class="text-gray-600">Name:</span> <span id="modalRequester" class="font-medium">Dr. Maria Santos</span></p>
+                            <p><span class="text-gray-600">Department:</span> <span id="modalDepartment" class="font-medium">College of Information Technology and Computer Science</span></p>
+                            <p><span class="text-gray-600">Email:</span> <span id="modalEmail" class="font-medium">maria.santos@uc.edu.ph</span></p>
+                            <p><span class="text-gray-600">Contact No:</span> <span id="modalContact" class="font-medium">+63 912 345 6789</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="font-semibold mb-2">Requested Items</h4>
+                    <div class="border rounded overflow-hidden">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsList" class="bg-white divide-y divide-gray-200">
+                                <!-- Items will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="font-semibold mb-2">Additional Notes</h4>
+                    <div class="bg-gray-50 p-4 rounded border">
+                        <p id="modalNotes" class="text-sm text-gray-700">These items are needed for the upcoming research conference on November 15-17, 2023. Please process this request at your earliest convenience.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button onclick="closeRequestDetails()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Close
+                    </button>
+                    <button class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
+                        Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function viewRequestDetails(row) {
+            // Get all cells from the row
+            const cells = row.cells;
+            
+            // Extract data from the row
+            const requestNo = cells[0].textContent.trim();
+            const requester = cells[1].textContent.trim();
+            const department = cells[2].textContent.trim();
+            const requestType = cells[3].textContent.trim();
+            const date = cells[4].textContent.trim();
+            const status = cells[5].querySelector('span').textContent.trim();
+            const priority = cells[6].querySelector('span:last-child').textContent.trim();
+            
+            // Update modal with the row's data
+            document.getElementById('modalRequestNo').textContent = requestNo;
+            document.getElementById('modalRequester').textContent = requester;
+            document.getElementById('modalDepartment').textContent = department;
+            document.getElementById('modalRequestType').textContent = requestType;
+            document.getElementById('modalDate').textContent = date;
+            document.getElementById('modalStatus').textContent = status;
+            
+            // Set status color based on status text
+            const statusElement = document.getElementById('modalStatus');
+            statusElement.className = 'px-2 py-1 rounded text-xs font-semibold ';
+            if (status === 'Pending') {
+                statusElement.classList.add('bg-yellow-100', 'text-yellow-700');
+            } else if (status === 'Approved') {
+                statusElement.classList.add('bg-green-100', 'text-green-700');
+            } else if (status === 'Rejected') {
+                statusElement.classList.add('bg-red-100', 'text-red-700');
+            }
+            
+            document.getElementById('modalPriority').textContent = priority;
+            
+            // Show the modal
+            document.getElementById('requestDetailsModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRequestDetails() {
+            document.getElementById('requestDetailsModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the modal content
+        document.getElementById('requestDetailsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRequestDetails();
+            }
+        });
+    </script>
     <script>
         // Line Chart: Requests Over Time by Department
         const ctxLine = document.getElementById('lineChart').getContext('2d');
@@ -260,6 +384,107 @@
                 responsive: false,
                 maintainAspectRatio: false,
                 plugins: { legend: { position: 'bottom' } }
+            }
+        });
+    </script>
+
+    <!-- Rejection Confirmation Modal -->
+    <div id="rejectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center border-b px-6 py-4">
+                <h3 class="text-lg font-semibold">Reject Request</h3>
+                <button onclick="closeRejectModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Request ID: <span id="rejectRequestId" class="font-medium">#REQ-0000</span></p>
+                    <label for="rejectReason" class="block text-sm font-medium text-gray-700 mb-1">Reason for Rejection</label>
+                    <textarea id="rejectReason" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Please provide a reason for rejecting this request..."></textarea>
+                    <p id="rejectError" class="mt-1 text-sm text-red-600 hidden">Please provide a reason for rejection.</p>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="confirmRejection()" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Confirm Rejection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentRejectButton = null;
+        let currentRequestId = '';
+
+        function showRejectModal(button) {
+            currentRejectButton = button;
+            currentRequestId = button.getAttribute('data-id');
+            document.getElementById('rejectRequestId').textContent = `#${currentRequestId}`;
+            document.getElementById('rejectReason').value = '';
+            document.getElementById('rejectError').classList.add('hidden');
+            document.getElementById('rejectModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentRejectButton = null;
+            currentRequestId = '';
+        }
+
+        function confirmRejection() {
+            const reason = document.getElementById('rejectReason').value.trim();
+            const errorElement = document.getElementById('rejectError');
+            
+            if (!reason) {
+                errorElement.classList.remove('hidden');
+                return;
+            }
+            
+            // Here you would typically make an API call to reject the request
+            console.log(`Rejecting request ${currentRequestId} with reason:`, reason);
+            
+            // Update the UI to show the request was rejected
+            if (currentRejectButton) {
+                // Find the status cell in the same row
+                const row = currentRejectButton.closest('tr');
+                if (row) {
+                    const statusCell = row.querySelector('td:nth-last-child(2)');
+                    if (statusCell) {
+                        statusCell.innerHTML = '<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-semibold">Rejected</span>';
+                    }
+                    
+                    // Disable the reject and endorse buttons
+                    const buttons = row.querySelectorAll('button');
+                    buttons.forEach(btn => {
+                        if (btn.textContent.includes('Reject') || btn.textContent.includes('Endorse')) {
+                            btn.disabled = true;
+                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                        }
+                    });
+                }
+            }
+            
+            // Show success message (you can replace this with a toast notification)
+            alert(`Request #${currentRequestId} has been rejected.`);
+            
+            // Close the modal
+            closeRejectModal();
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const rejectModal = document.getElementById('rejectModal');
+            if (event.target === rejectModal) {
+                closeRejectModal();
             }
         });
     </script>
