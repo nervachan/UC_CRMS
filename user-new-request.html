@@ -50,7 +50,7 @@
                 <div class="flex items-center space-x-4">
                     <span class="text-gray-700">Daphnie Pelaez</span>
                     <button class="text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
                     </button>
@@ -62,44 +62,16 @@
                 <h2 class="text-xl font-bold mb-4">Create New Request</h2>
                 <p class="text-gray-600 mb-6">Fill out the form below to submit a new request to the Logistics Management Office</p>
                 
-                <!-- Search Bar -->
-                <div class="mb-6 flex w-full space-x-4">
-                    <div class="relative flex-grow">
-                        <input type="text" 
-                               placeholder="Search for items in Logistics Management Office Inventory" 
-                               class="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-                        Search
-                    </button>
-                </div>
+               
                
                 <form id="requestForm">
                     <!-- Request Information Header -->
                     <h3 class="text-lg font-semibold mb-2 mt-4">Request Information</h3>
                     <!-- Request Information -->
-                    <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="grid grid-cols-1 gap-4 mb-6">
                         <div>
-                            <label class="block text-gray-700 font-bold mb-2">Activity Title</label>
-                            <input type="text" placeholder="Enter a Request..." class="border rounded px-4 py-2 w-full">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold mb-2">Request Type</label>
-                            <select class="border rounded px-4 py-2 w-full">
-                                <option>Select a request type...</option>
-                                <option value="">Office Supplies</option>
-                                <option value="">Office Equipment</option>
-                                <option value="">Software</option>
-                                <option value="">Hardware</option>
-                                <option value="">Repair</option>
-                                <option value="">Maintenance</option>
-                                <option value="">Others</option>
-                            </select>
+                            <label class="block text-gray-700 font-bold mb-2">Purpose of Request</label>
+                            <textarea placeholder="Describe the purpose of your request..." class="border rounded px-4 py-2 w-full" rows="3"></textarea>
                         </div>
                     </div>
 
@@ -159,8 +131,8 @@
                         </div>
                     </div>
                     <div class="mb-6">
-                        <label class="block text-gray-700 font-bold mb-2">Purpose of Request</label>
-                        <textarea placeholder="Enter purpose..." class="border rounded px-4 py-2 w-full"></textarea>
+                        <label class="block text-gray-700 font-bold mb-2">Additional Information (optional)</label>
+                        <textarea id="additionalInfo" placeholder="Enter any additional information..." class="border rounded px-4 py-2 w-full" rows="2"></textarea>
                     </div>
                 </form>
             </section>
@@ -169,6 +141,22 @@
             <section class="bg-white p-6 rounded shadow mt-6">
                 <h2 class="text-xl font-bold mb-4">Select Items</h2>
                 <p class="text-gray-600 mb-6">Choose items in the Inventory below or search for specific items</p>
+                 <!-- Search Bar -->
+                 <div class="mb-6 flex w-full space-x-4">
+                    <div class="relative flex-grow">
+                        <input type="text" 
+                               placeholder="Search for items in Logistics Management Office Inventory" 
+                               class="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                        Search
+                    </button>
+                </div>
                 <div class="flex space-x-4 mb-6">
                     <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">All Items</button>
                     <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Office Supplies</button>
@@ -336,15 +324,15 @@
                 <div class="bg-gray-50 rounded p-6 mb-2">
                     <div class="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                            <div class="text-gray-500">Activity Title:</div>
+                            <div class="text-gray-500">Purpose of Request:</div>
                             <div class="font-semibold" id="modalReqTitle">-</div>
                         </div>
                         <div>
-                            <div class="text-gray-500">Request Type:</div>
+                            <div class="text-gray-500">Charge To:</div>
                             <div class="font-semibold" id="modalReqType">-</div>
                         </div>
                         <div>
-                            <div class="text-gray-500">Charge To:</div>
+                            <div class="text-gray-500">Budget File:</div>
                             <div class="font-semibold" id="modalDepartment">-</div>
                         </div>
                         <div>
@@ -358,10 +346,6 @@
                         <div>
                             <div class="text-gray-500">Needed By:</div>
                             <div class="font-semibold" id="modalNeededBy">-</div>
-                        </div>
-                        <div class="col-span-2">
-                            <div class="text-gray-500">Purpose:</div>
-                            <div class="font-semibold" id="modalPurpose">-</div>
                         </div>
                     </div>
                 </div>
@@ -450,14 +434,12 @@
             document.getElementById('reviewBtn').addEventListener('click', function() {
                 // Form fields
                 const form = document.getElementById('requestForm');
-                const activityTitle = form.querySelector('input[type="text"]').value;
-                const requestType = form.querySelector('select').value;
-                const chargeTo = form.querySelectorAll('select')[1].value;
+                const purpose = form.querySelector('textarea').value;
+                const chargeTo = form.querySelectorAll('select')[0].value;
                 const budgetFile = form.querySelector('input[type="file"]')?.files[0]?.name || '';
                 const requestDate = form.querySelector('input[type="date"]').value;
                 const neededBy = form.querySelectorAll('input[type="date"]')[1].value;
                 const priority = form.querySelector('input[name="priority"]:checked')?.value || '';
-                const purpose = form.querySelector('textarea').value;
 
                 // Items section
                 const items = [
@@ -499,13 +481,12 @@
                 }
 
                 // Fill modal fields with correct labels
-                document.getElementById('modalReqTitle').textContent = activityTitle || '-';
-                document.getElementById('modalReqType').textContent = requestType || '-';
-                document.getElementById('modalDepartment').textContent = chargeTo || '-';
-                document.getElementById('modalDeliveryLoc').textContent = budgetFile || '-';
+                document.getElementById('modalReqTitle').textContent = purpose || '-';
+                document.getElementById('modalReqType').textContent = chargeTo || '-';
+                document.getElementById('modalDepartment').textContent = budgetFile || '-';
+                document.getElementById('modalDeliveryLoc').textContent = priority || '-';
                 document.getElementById('modalReqDate').textContent = requestDate || '-';
                 document.getElementById('modalNeededBy').textContent = neededBy || '-';
-                document.getElementById('modalPurpose').textContent = purpose || '-';
 
                 // Items table
                 let itemsHtml = '';
@@ -554,14 +535,12 @@
 
                 // Gather all data to store
                 const form = document.getElementById('requestForm');
-                const activityTitle = form.querySelector('input[type="text"]').value;
-                const requestType = form.querySelector('select').value;
-                const chargeTo = form.querySelectorAll('select')[1].value;
+                const purpose = form.querySelector('textarea').value;
+                const chargeTo = form.querySelectorAll('select')[0].value;
                 const budgetFile = form.querySelector('input[type="file"]')?.files[0]?.name || '';
                 const requestDate = form.querySelector('input[type="date"]').value;
                 const neededBy = form.querySelectorAll('input[type="date"]')[1].value;
                 const priority = form.querySelector('input[name="priority"]:checked')?.value || '';
-                const purpose = form.querySelector('textarea').value;
                 const notes = document.getElementById('modalNotes').value;
 
                 // Items section
@@ -605,14 +584,12 @@
 
                 // Build request object with correct keys for labels
                 const requestData = {
-                    "Activity Title": activityTitle,
-                    "Request Type": requestType,
+                    "Purpose of Request": purpose,
                     "Charge To": chargeTo,
                     "Budget File": budgetFile,
                     "Request Date": requestDate,
                     "Needed By": neededBy,
                     "Priority Level": priority,
-                    "Purpose of Request": purpose,
                     "Additional Notes": notes,
                     "Items": selectedItems
                 };

@@ -90,6 +90,43 @@
                 </div>
             </section>
 
+            <!-- Recent Requests -->
+            <section class="bg-white p-4 rounded shadow mt-6">
+                <h2 class="text-lg font-bold mb-4">Your Recent Requests</h2>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border p-2">Request ID</th>
+                            <th class="border p-2">Items</th>
+                            <th class="border p-2">Date</th>
+                            <th class="border p-2">Status</th>
+                            <th class="border p-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border p-2">#REQ-0124</td>
+                            <td class="border p-2">A4 Bond Paper x2, Stapler x1</td>
+                            <td class="border p-2">May 15, 2025</td>
+                            <td class="border p-2 text-yellow-600">Pending</td>
+                            <td class="border p-2">
+                                <a href="#" class="text-blue-600 hover:underline view-request">View</a>
+                                <a href="#" class="text-red-600 hover:underline ml-2">Cancel</a>
+                            </td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border p-2">#REQ-0125</td>
+                            <td class="border p-2">Office Chair x5, Desk Lamps x3</td>
+                            <td class="border p-2">July 8, 2025</td>
+                            <td class="border p-2 text-red-600">Rejected</td>
+                            <td class="border p-2">
+                                <a href="#" class="text-blue-600 hover:underline view-request">View</a>
+                                <a href="#" class="text-gray-400 hover:text-gray-600 ml-2" title="Cannot cancel a completed/rejected request">Cancel</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
             <!--Frequently Requested Items-->
             <section class="gap-4 mb-6">
@@ -212,46 +249,14 @@
                 </div>
             </section>
 
-            <!-- Recent Requests -->
-            <section class="bg-white p-4 rounded shadow mt-6">
-                <h2 class="text-lg font-bold mb-4">Your Recent Requests</h2>
-                <table class="w-full border-collapse">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="border p-2">Request ID</th>
-                            <th class="border p-2">Items</th>
-                            <th class="border p-2">Date</th>
-                            <th class="border p-2">Status</th>
-                            <th class="border p-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border p-2">#REQ-0124</td>
-                            <td class="border p-2">A4 Bond Paper x2, Stapler x1</td>
-                            <td class="border p-2">May 15, 2025</td>
-                            <td class="border p-2 text-yellow-600">Pending</td>
-                            <td class="border p-2">
-                                <a href="#" class="text-blue-600 hover:underline view-request" 
-                                   data-request-id="#REQ-0124"
-                                   data-items="A4 Bond Paper x2, Stapler x1"
-                                   data-date="May 15, 2025"
-                                   data-status="Pending">View</a>
-                                <a href="#" class="text-red-600 hover:underline ml-2">Cancel</a>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed, include data-* attributes for each -->
-                    </tbody>
-                </table>
-            </section>
-            <!-- Modal for Request Details -->
-            <div id="requestModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+            <!-- Modal for Request Details (A4 Bond Paper) -->
+            <div id="requestModal1" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
                 <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-0 relative border-2 border-blue-400">
                     <div class="flex justify-between items-center border-b px-6 py-4">
                         <h3 class="text-lg font-bold text-gray-800">
-                            Request Details - <span id="modalRequestId">REQ-2023-001</span>
+                            Request Details - <span>#REQ-0124</span>
                         </h3>
-                        <button id="closeModalBtn" class="text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+                        <button class="close-modal-btn text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
                     </div>
                     <div class="px-6 py-4">
                         <div class="grid grid-cols-2 gap-4 mb-2">
@@ -295,6 +300,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        
                         <div>
                             <div class="text-xs text-gray-500 mb-1">Request Timeline</div>
                             <div class="space-y-3 text-xs">
@@ -302,24 +308,115 @@
                                     <span class="mt-1 w-3 h-3 rounded-full bg-blue-500 flex-shrink-0"></span>
                                     <div>
                                         <div class="font-semibold text-gray-700">Request Submitted</div>
-                                        <div class="text-gray-500">May 15, 2025 - 09:30 AM</div>
+                                        <div class="text-gray-500">July 8, 2025 - 09:30 AM</div>
                                         <div class="text-gray-400">Request for office supplies submitted by Daphnie Pelaez</div>
                                     </div>
                                 </div>
                                 <div class="flex items-start space-x-2">
                                     <span class="mt-1 w-3 h-3 rounded-full bg-yellow-400 flex-shrink-0"></span>
                                     <div>
-                                        <div class="font-semibold text-gray-700">Reviewed</div>
-                                        <div class="text-gray-500">May 17, 2025 - 02:45 PM</div>
-                                        <div class="text-gray-400">Request being processed by Logistics Management Office</div>
+                                        <div class="font-semibold text-gray-700">Processing</div>
+                                        <div class="text-gray-500">July 8, 2025 - 10:45 AM</div>
+                                        <div class="text-gray-400">Request is currently being processed by Logistics Management Office</div>
                                     </div>
                                 </div>
                                 <div class="flex items-start space-x-2">
-                                    <span class="mt-1 w-3 h-3 rounded-full bg-purple-500 flex-shrink-0"></span>
+                                    <span class="mt-1 w-3 h-3 rounded-full bg-green-500 flex-shrink-0"></span>
                                     <div>
-                                        <div class="font-semibold text-gray-700">Endorsed to Purchasing Department</div>
-                                        <div class="text-gray-500">May 18, 2025 - 10:15 AM</div>
-                                        <div class="text-gray-400">Endorsed by Leah Bee</div>
+                                        <div class="font-semibold text-gray-700">Endorsed to Finance Office</div>
+                                        <div class="text-gray-500">July 8, 2025 - 01:20 PM</div>
+                                        <div class="text-gray-400">Endorsed by Che Gacusan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end mt-4 space-x-2">
+                            <button onclick="alert('Follow up email has been sent regarding this request.')" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm">
+                                Follow Up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal for Request Details (Office Chairs - Rejected) -->
+            <div id="requestModal2" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+                <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-0 relative border-2 border-red-400">
+                    <div class="flex justify-between items-center border-b px-6 py-4">
+                        <h3 class="text-lg font-bold text-gray-800">
+                            Request Details - <span>#REQ-0125</span>
+                        </h3>
+                        <button class="close-modal-btn text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="grid grid-cols-2 gap-4 mb-2">
+                            <div>
+                                <div class="text-xs text-gray-500">Requested By</div>
+                                <div class="font-semibold text-sm text-gray-800">Daphnie Pelaez</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Department</div>
+                                <div class="font-semibold text-sm text-gray-800">College of Computer Studies</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Request Date</div>
+                                <div class="font-semibold text-sm text-gray-800">July 8, 2025</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500">Status</div>
+                                <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded">Rejected</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="text-xs text-gray-500 mb-2">Requested Items</div>
+                            <table class="w-full border">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="text-left p-2 text-xs text-gray-500">Item</th>
+                                        <th class="text-right p-2 text-xs text-gray-500">Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t">
+                                        <td class="p-2 text-sm">Office Chair</td>
+                                        <td class="p-2 text-right text-sm">5 pcs</td>
+                                    </tr>
+                                    <tr class="border-t">
+                                        <td class="p-2 text-sm">Desk Lamp</td>
+                                        <td class="p-2 text-right text-sm">3 pcs</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4">
+                            <div class="text-xs text-gray-500 mb-1">Notes</div>
+                            <p class="text-sm text-gray-700">Additional furniture for new faculty members</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="text-xs text-gray-500 mb-1">Request Timeline</div>
+                            <div class="space-y-3 text-xs">
+                                <div class="flex items-start space-x-2">
+                                    <span class="mt-1 w-3 h-3 rounded-full bg-blue-500 flex-shrink-0"></span>
+                                    <div>
+                                        <div class="font-semibold text-gray-700">Request Submitted</div>
+                                        <div class="text-gray-500">July 8, 2025 - 08:15 AM</div>
+                                        <div class="text-gray-400">Request for furniture submitted by Daphnie Pelaez</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <span class="mt-1 w-3 h-3 rounded-full bg-yellow-400 flex-shrink-0"></span>
+                                    <div>
+                                        <div class="font-semibold text-gray-700">Processing</div>
+                                        <div class="text-gray-500">July 8, 2025 - 10:30 AM</div>
+                                        <div class="text-gray-400">Request is being reviewed by Logistics Management Office</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <span class="mt-1 w-3 h-3 rounded-full bg-red-500 flex-shrink-0"></span>
+                                    <div>
+                                        <div class="font-semibold text-gray-700">Rejected</div>
+                                        <div class="text-gray-500">July 8, 2025 - 03:45 PM</div>
+                                        <div class="text-gray-400">Submitted budget request is insufficient. Please resubmit with updated budget</div>
                                     </div>
                                 </div>
                             </div>
@@ -331,57 +428,39 @@
     </div>
     <script>
     // Modal functionality
-    document.querySelectorAll('.view-request').forEach(function(link) {
+    document.querySelectorAll('.view-request').forEach(function(link, index) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            // Fill modal fields from data attributes
-            document.getElementById('modalRequestId').textContent = this.dataset.requestId;
-            document.getElementById('modalRequestDate').textContent = this.dataset.date;
-            // Status coloring
-            var status = this.dataset.status || '';
-            var statusSpan = document.getElementById('modalStatus');
-            statusSpan.textContent = status;
-            statusSpan.className = "inline-block text-xs font-semibold px-3 py-1 rounded ";
-            if (status.toLowerCase() === 'pending') {
-                statusSpan.className += "bg-yellow-100 text-yellow-700";
-            } else if (status.toLowerCase() === 'approved') {
-                statusSpan.className += "bg-green-100 text-green-700";
-            } else if (status.toLowerCase() === 'delivered') {
-                statusSpan.className += "bg-blue-100 text-blue-700";
-            } else {
-                statusSpan.className += "bg-gray-100 text-gray-700";
-            }
-            // Fill items table (parse items string, e.g. "A4 Bond Paper x2, Stapler x1")
-            var itemsStr = this.dataset.items || '';
-            var itemsArr = itemsStr.split(',').map(function(item) { return item.trim(); });
-            var itemsHtml = '';
-            itemsArr.forEach(function(item) {
-                var match = item.match(/(.+?) x(\d+)/i);
-                if (match) {
-                    itemsHtml += `<tr class="border-t">
-                        <td class="py-2 px-2">${match[1]}</td>
-                        <td class="py-2 px-2">${match[2]}</td>
-                        <td class="py-2 px-2 text-blue-500 font-bold">Unit</td>
-                        <td class="py-2 px-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">${status}</span></td>
-                    </tr>`;
-                } else if (item) {
-                    itemsHtml += `<tr class="border-t">
-                        <td class="py-2 px-2">${item}</td>
-                        <td class="py-2 px-2">1</td>
-                        <td class="py-2 px-2 text-blue-500 font-bold">Unit</td>
-                        <td class="py-2 px-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">${status}</span></td>
-                    </tr>`;
-                }
-            });
-            document.getElementById('modalItemsTable').innerHTML = itemsHtml;
-            document.getElementById('requestModal').classList.remove('hidden');
+            const modalId = 'requestModal' + (index + 1);
+            document.getElementById(modalId).classList.remove('hidden');
         });
     });
-    document.getElementById('closeModalBtn').onclick = function() {
-        document.getElementById('requestModal').classList.add('hidden');
-    };
+
+    // Close modal functionality
+    document.querySelectorAll('.close-modal-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.closest('.fixed').classList.add('hidden');
+        });
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('bg-black')) {
+            document.querySelectorAll('.fixed.bg-black').forEach(function(modal) {
+                modal.classList.add('hidden');
+            });
+        }
+    });
+
+    // Close modal with Escape key
     window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') document.getElementById('requestModal').classList.add('hidden');
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.fixed.bg-black').forEach(function(modal) {
+                if (!modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                }
+            });
+        }
     });
     </script>
 </body>

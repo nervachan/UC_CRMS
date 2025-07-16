@@ -108,7 +108,7 @@
             <!-- Tabs -->
             <div class="flex border-b mb-4">
                 <button class="px-4 py-2 text-blue-600 border-b-2 border-blue-600 font-semibold focus:outline-none">History of Requests</button>
-                <button class="px-4 py-2 text-gray-600 hover:text-blue-600">Summary of Requests</button>
+                <button class="px-4 py-2 text-gray-600 hover:text-blue-600">Pending Requests</button>
                 <button class="px-4 py-2 text-gray-600 hover:text-blue-600">Rejected Requests</button>
             </div>
             <!-- Filters -->
@@ -139,7 +139,7 @@
                         <tr>
                             <th class="px-4 py-2 bg-blue-400 text-white font-bold">REQUEST ID</th>
                             <th class="px-4 py-2 bg-blue-400 text-white font-bold">REQUESTER</th>
-                            <th class="px-4 py-2 bg-blue-400 text-white font-bold">ACTIVITY TITLE</th>
+                            
                             <th class="px-4 py-2 bg-blue-400 text-white font-bold">ITEM</th>
                             <th class="px-4 py-2 bg-blue-400 text-white font-bold">REQUEST TYPE</th>
                             <th class="px-4 py-2 bg-blue-400 text-white font-bold">DATE</th>
@@ -152,43 +152,43 @@
                         <tr>
                             <td class="px-4 py-2 border-t">REQ-001</td>
                             <td class="px-4 py-2 border-t">John Smith</td>
-                            <td class="px-4 py-2 border-t">IT</td>
+                           
                             <td class="px-4 py-2 border-t">Laptop</td>
                             <td class="px-4 py-2 border-t">Equipment</td>
                             <td class="px-4 py-2 border-t">2023-06-15</td>
                             <td class="px-4 py-2 border-t"><span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">Delivered</span></td>
                             <td class="px-4 py-2 border-t">2023-06-20</td>
                             <td class="px-4 py-2 border-t">
-                                <button class="text-blue-600 hover:underline mr-2" title="Edit">&#9998;</button>
-                                <button class="text-red-600 hover:underline" title="Delete">&#128465;</button>
+                                <button class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm view-btn" data-id="REQ-001">View</button>
+                                <button class="text-red-600 hover:underline ml-2" title="Delete">&#128465;</button>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 border-t">REQ-002</td>
                             <td class="px-4 py-2 border-t">Sarah Johnson</td>
-                            <td class="px-4 py-2 border-t">HR</td>
+                            
                             <td class="px-4 py-2 border-t">Office Chair</td>
                             <td class="px-4 py-2 border-t">Furniture</td>
                             <td class="px-4 py-2 border-t">2023-06-18</td>
                             <td class="px-4 py-2 border-t"><span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">Pending</span></td>
                             <td class="px-4 py-2 border-t">2023-06-19</td>
                             <td class="px-4 py-2 border-t">
-                                <button class="text-blue-600 hover:underline mr-2" title="Edit">&#9998;</button>
-                                <button class="text-red-600 hover:underline" title="Delete">&#128465;</button>
+                                <button class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm view-btn" data-id="REQ-002">View</button>
+                                <button class="text-red-600 hover:underline ml-2" title="Delete">&#128465;</button>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 border-t">REQ-003</td>
                             <td class="px-4 py-2 border-t">Michael Brown</td>
-                            <td class="px-4 py-2 border-t">Finance</td>
+                           
                             <td class="px-4 py-2 border-t">Calculator</td>
                             <td class="px-4 py-2 border-t">Office Supplies</td>
                             <td class="px-4 py-2 border-t">2023-06-20</td>
                             <td class="px-4 py-2 border-t"><span class="bg-pink-200 text-pink-800 px-2 py-1 rounded text-xs">Rejected</span></td>
                             <td class="px-4 py-2 border-t">2023-06-21</td>
                             <td class="px-4 py-2 border-t">
-                                <button class="text-blue-600 hover:underline mr-2" title="Edit">&#9998;</button>
-                                <button class="text-red-600 hover:underline" title="Delete">&#128465;</button>
+                                <button class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm view-btn" data-id="REQ-003">View</button>
+                                <button class="text-red-600 hover:underline ml-2" title="Delete">&#128465;</button>
                             </td>
                         </tr>
                         <!-- ...more rows as needed... -->
@@ -198,12 +198,67 @@
         </section>
     </main>
 </div>
+
+<!-- Request Details Modal -->
+<div id="requestModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg p-6 w-full max-w-2xl">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Request Details</h3>
+            <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-500">Request ID</p>
+                    <p id="modalReqId" class="font-semibold">-</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Requester</p>
+                    <p id="modalRequester" class="font-semibold">-</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Item</p>
+                    <p id="modalActivity" class="font-semibold">-</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Request Type</p>
+                    <p id="modalItem" class="font-semibold">-</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Date Requested</p>
+                    <p id="modalReqType" class="font-semibold">-</p>
+                </div>
+                <div>
+                    <p class="text-gray-500">Last Updated</p>
+                    <p id="modalStatus" class="font-semibold">-</p>
+                </div>
+            </div>
+            <div>
+                <p class="text-gray-500">Status</p>
+                <p id="modalDate" class="font-semibold">-</p>
+            </div>
+            
+        </div>
+        <div class="mt-6 flex justify-end">
+            <button id="#" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">Print Request</button>
+        </div>
+        <div class="mt-6 flex justify-end">
+            <button id="closeModalBtn" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded">Close</button>
+        </div>
+        
+    </div>
+</div>
+
 <script>
     // Bar Chart
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
         data: {
-            labels: ['1st Term', '2nd Term', '3rd Term'],
+            labels: ['1st Term AY 2024-2025', '2nd Term AY 2024-2025', '3rd Term AY 2024-2025'],
             datasets: [{
                 label: 'Total Requests',
                 data: [25, 18, 14],
@@ -224,8 +279,8 @@
                 },
                 x: {
                     ticks: {
-                        maxRotation: 45,
-                        minRotation: 45,
+                        maxRotation: 0,
+                        minRotation: 0,
                         font: {
                             size: 8
                         }
@@ -258,6 +313,38 @@
         options: {
             plugins: { legend: { display: false } },
             cutout: '70%'
+        }
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('requestModal');
+    const closeBtns = document.querySelectorAll('#closeModal, #closeModalBtn');
+    const viewBtns = document.querySelectorAll('.view-btn');
+
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const row = btn.closest('tr');
+            document.getElementById('modalReqId').textContent = row.cells[0].textContent;
+            document.getElementById('modalRequester').textContent = row.cells[1].textContent;
+            document.getElementById('modalActivity').textContent = row.cells[2].textContent;
+            document.getElementById('modalItem').textContent = row.cells[3].textContent;
+            document.getElementById('modalReqType').textContent = row.cells[4].textContent;
+            document.getElementById('modalDate').textContent = row.cells[5].textContent;
+            document.getElementById('modalStatus').textContent = row.cells[6].textContent;
+            modal.classList.remove('hidden');
+        });
+    });
+
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
         }
     });
 </script>

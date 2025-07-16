@@ -30,7 +30,7 @@
                     <li><a href="admin-dashboard.html" class="block py-2 px-4 rounded bg-red-700">Dashboard</a></li>
                     <li><a href="admin-new-request.html" class="block py-2 px-4 rounded hover:bg-red-700">New Request</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">My Requests</a></li>
-                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Department Requests</a></li>
+                    <li><a href="admin-department-requests.html" class="block py-2 px-4 rounded hover:bg-red-700">Department Requests</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Reports</a></li>
                     <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Settings</a></li>
                 </ul>
@@ -70,7 +70,7 @@
                     <p class="text-yellow-600">+3 this week</p>
                 </div>
                 <div class="bg-white p-4 rounded shadow">
-                    <h2 class="text-lg font-bold text-green-700">Approved</h2>
+                    <h2 class="text-lg font-bold text-green-700">Delviere</h2>
                     <p class="text-2xl font-bold text-green-700">95</p>
                     <p class="text-green-600">+6 this week</p>
                 </div>
@@ -143,7 +143,7 @@
                                 </td>
                                 <td class="border p-2">
                                     <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
-                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
+                                    <button onclick="showEndorseModal(this)" class="text-green-600 hover:underline text-xs font-semibold mr-2" data-id="REQ-2023-0124">Endorse</button>
                                     <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
                                 </td>
                             </tr>
@@ -164,8 +164,8 @@
                                 </td>
                                 <td class="border p-2">
                                     <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
-                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
-                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
+                                    <button onclick="showEndorseModal(this)" class="text-green-600 hover:underline text-xs font-semibold mr-2" data-id="REQ-2023-0123">Endorse</button>
+                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0123">Reject</button>
                                 </td>
                             </tr>
                             <tr>
@@ -185,8 +185,8 @@
                                 </td>
                                 <td class="border p-2">
                                     <button onclick="viewRequestDetails(this.closest('tr'))" class="text-blue-600 hover:underline text-xs font-semibold mr-2">View</button>
-                                    <button class="text-green-600 hover:underline text-xs font-semibold mr-2">Endorse</button>
-                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0124">Reject</button>
+                                    <button onclick="showEndorseModal(this)" class="text-green-600 hover:underline text-xs font-semibold mr-2" data-id="REQ-2023-0122">Endorse</button>
+                                    <button onclick="showRejectModal(this)" class="text-red-600 hover:underline text-xs font-semibold" data-id="REQ-2023-0122">Reject</button>
                                 </td>
                             </tr>
                             <!-- ...more rows as needed... -->
@@ -205,7 +205,7 @@
                 <h3 class="text-lg font-bold">Request Details</h3>
                 <button onclick="closeRequestDetails()" class="text-gray-500 hover:text-gray-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -269,43 +269,87 @@
         </div>
     </div>
 
+    <!-- Rejection Confirmation Modal -->
+    <div id="rejectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center border-b px-6 py-4">
+                <h3 class="text-lg font-semibold">Reject Request</h3>
+                <button onclick="closeRejectModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Request ID: <span id="rejectRequestId" class="font-medium">#REQ-0000</span></p>
+                    <label for="rejectReason" class="block text-sm font-medium text-gray-700 mb-1">Reason for Rejection</label>
+                    <textarea id="rejectReason" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Please provide a reason for rejecting this request..."></textarea>
+                    <p id="rejectError" class="mt-1 text-sm text-red-600 hidden">Please provide a reason for rejection.</p>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="confirmRejection()" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Confirm Rejection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Endorsement Modal -->
+    <div id="endorseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 w-96">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Endorse Request</h3>
+                <button onclick="closeEndorseModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mb-4">
+                <p class="text-sm text-gray-600 mb-2">Endorse request <span id="endorseRequestId" class="font-semibold"></span> to:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="endorseTo" value="purchasing" class="text-blue-600" checked>
+                        <span>Purchasing Department</span>
+                    </label>
+                    <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="endorseTo" value="finance" class="text-blue-600">
+                        <span>Finance Department</span>
+                    </label>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button onclick="closeEndorseModal()" class="px-4 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button onclick="confirmEndorsement()" class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700">
+                    Confirm Endorsement
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Modal functions
+        // Shared variables for all modals
+        let currentModalButton = null;
+        let currentRequestId = '';
+
+        // Request Details Modal
         function viewRequestDetails(row) {
-            // Get all cells from the row
-            const cells = row.cells;
-            
-            // Extract data from the row
-            const requestNo = cells[0].textContent.trim();
-            const requester = cells[1].textContent.trim();
-            const department = cells[2].textContent.trim();
-            const requestType = cells[3].textContent.trim();
-            const date = cells[4].textContent.trim();
-            const status = cells[5].querySelector('span').textContent.trim();
-            const priority = cells[6].querySelector('span:last-child').textContent.trim();
-            
-            // Update modal with the row's data
-            document.getElementById('modalRequestNo').textContent = requestNo;
-            document.getElementById('modalRequester').textContent = requester;
-            document.getElementById('modalDepartment').textContent = department;
-            document.getElementById('modalRequestType').textContent = requestType;
-            document.getElementById('modalDate').textContent = date;
-            document.getElementById('modalStatus').textContent = status;
-            
-            // Set status color based on status text
-            const statusElement = document.getElementById('modalStatus');
-            statusElement.className = 'px-2 py-1 rounded text-xs font-semibold ';
-            if (status === 'Pending') {
-                statusElement.classList.add('bg-yellow-100', 'text-yellow-700');
-            } else if (status === 'Approved') {
-                statusElement.classList.add('bg-green-100', 'text-green-700');
-            } else if (status === 'Rejected') {
-                statusElement.classList.add('bg-red-100', 'text-red-700');
-            }
-            
-            document.getElementById('modalPriority').textContent = priority;
-            
-            // Show the modal
+            currentRequestId = row.cells[0].textContent;
+            document.getElementById('modalReqId').textContent = currentRequestId;
+            document.getElementById('modalReqName').textContent = row.cells[1].textContent;
+            document.getElementById('modalReqCollege').textContent = row.cells[2].textContent;
+            document.getElementById('modalReqType').textContent = row.cells[3].textContent;
+            document.getElementById('modalReqDate').textContent = row.cells[4].textContent;
+            document.getElementById('modalReqStatus').textContent = row.cells[5].textContent;
+            document.getElementById('modalReqPriority').textContent = row.cells[6].textContent;
             document.getElementById('requestDetailsModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -313,22 +357,92 @@
         function closeRequestDetails() {
             document.getElementById('requestDetailsModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
         }
 
-        // Close modal when clicking outside the modal content
-        document.getElementById('requestDetailsModal').addEventListener('click', function(e) {
-            if (e.target === this) {
+        // Reject Modal
+        function showRejectModal(button) {
+            currentModalButton = button;
+            currentRequestId = button.getAttribute('data-id');
+            document.getElementById('rejectModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
+        }
+
+        // Endorsement Modal
+        function showEndorseModal(button) {
+            currentModalButton = button;
+            currentRequestId = button.getAttribute('data-id');
+            document.getElementById('endorseRequestId').textContent = `#${currentRequestId}`;
+            document.getElementById('endorseModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEndorseModal() {
+            document.getElementById('endorseModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
+        }
+
+        function confirmEndorsement() {
+            const endorseTo = document.querySelector('input[name="endorseTo"]:checked').value;
+            
+            // Here you would typically make an API call to endorse the request
+            console.log(`Endorsing request ${currentRequestId} to ${endorseTo} department.`);
+            
+            // Update the UI to show the request was endorsed
+            if (currentModalButton) {
+                const row = currentModalButton.closest('tr');
+                if (row) {
+                    const statusCell = row.querySelector('td:nth-last-child(2)');
+                    if (statusCell) {
+                        statusCell.innerHTML = '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">Endorsed</span>';
+                    }
+                    
+                    // Disable the reject and endorse buttons
+                    const buttons = row.querySelectorAll('button');
+                    buttons.forEach(btn => {
+                        if (btn.textContent.includes('Reject') || btn.textContent.includes('Endorse')) {
+                            btn.disabled = true;
+                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                        }
+                    });
+                }
+            }
+            
+            alert(`Request #${currentRequestId} has been endorsed.`);
+            closeEndorseModal();
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const requestDetailsModal = document.getElementById('requestDetailsModal');
+            const rejectModal = document.getElementById('rejectModal');
+            const endorseModal = document.getElementById('endorseModal');
+            
+            if (event.target === requestDetailsModal) {
                 closeRequestDetails();
+            } else if (event.target === rejectModal) {
+                closeRejectModal();
+            } else if (event.target === endorseModal) {
+                closeEndorseModal();
             }
         });
-    </script>
-    <script>
+
         // Line Chart: Requests Over Time by Department
         const ctxLine = document.getElementById('lineChart').getContext('2d');
         new Chart(ctxLine, {
             type: 'line',
             data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 datasets: [
                     {
                         label: 'CBA',
@@ -384,107 +498,6 @@
                 responsive: false,
                 maintainAspectRatio: false,
                 plugins: { legend: { position: 'bottom' } }
-            }
-        });
-    </script>
-
-    <!-- Rejection Confirmation Modal -->
-    <div id="rejectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white rounded-lg w-full max-w-md mx-4">
-            <div class="flex justify-between items-center border-b px-6 py-4">
-                <h3 class="text-lg font-semibold">Reject Request</h3>
-                <button onclick="closeRejectModal()" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="p-6">
-                <div class="mb-4">
-                    <p class="text-sm text-gray-600 mb-2">Request ID: <span id="rejectRequestId" class="font-medium">#REQ-0000</span></p>
-                    <label for="rejectReason" class="block text-sm font-medium text-gray-700 mb-1">Reason for Rejection</label>
-                    <textarea id="rejectReason" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Please provide a reason for rejecting this request..."></textarea>
-                    <p id="rejectError" class="mt-1 text-sm text-red-600 hidden">Please provide a reason for rejection.</p>
-                </div>
-                
-                <div class="flex justify-end space-x-3 mt-6">
-                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                        Cancel
-                    </button>
-                    <button type="button" onclick="confirmRejection()" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Confirm Rejection
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let currentRejectButton = null;
-        let currentRequestId = '';
-
-        function showRejectModal(button) {
-            currentRejectButton = button;
-            currentRequestId = button.getAttribute('data-id');
-            document.getElementById('rejectRequestId').textContent = `#${currentRequestId}`;
-            document.getElementById('rejectReason').value = '';
-            document.getElementById('rejectError').classList.add('hidden');
-            document.getElementById('rejectModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeRejectModal() {
-            document.getElementById('rejectModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            currentRejectButton = null;
-            currentRequestId = '';
-        }
-
-        function confirmRejection() {
-            const reason = document.getElementById('rejectReason').value.trim();
-            const errorElement = document.getElementById('rejectError');
-            
-            if (!reason) {
-                errorElement.classList.remove('hidden');
-                return;
-            }
-            
-            // Here you would typically make an API call to reject the request
-            console.log(`Rejecting request ${currentRequestId} with reason:`, reason);
-            
-            // Update the UI to show the request was rejected
-            if (currentRejectButton) {
-                // Find the status cell in the same row
-                const row = currentRejectButton.closest('tr');
-                if (row) {
-                    const statusCell = row.querySelector('td:nth-last-child(2)');
-                    if (statusCell) {
-                        statusCell.innerHTML = '<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-semibold">Rejected</span>';
-                    }
-                    
-                    // Disable the reject and endorse buttons
-                    const buttons = row.querySelectorAll('button');
-                    buttons.forEach(btn => {
-                        if (btn.textContent.includes('Reject') || btn.textContent.includes('Endorse')) {
-                            btn.disabled = true;
-                            btn.classList.add('opacity-50', 'cursor-not-allowed');
-                        }
-                    });
-                }
-            }
-            
-            // Show success message (you can replace this with a toast notification)
-            alert(`Request #${currentRequestId} has been rejected.`);
-            
-            // Close the modal
-            closeRejectModal();
-        }
-
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
-            const rejectModal = document.getElementById('rejectModal');
-            if (event.target === rejectModal) {
-                closeRejectModal();
             }
         });
     </script>

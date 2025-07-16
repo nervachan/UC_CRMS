@@ -56,30 +56,276 @@
                 </div>
             </header>
 
-            <!-- Department Requests Table -->
-            <section class="bg-white p-6 rounded shadow">
-                <h2 class="text-xl font-bold mb-4 text-red-900">Department Requests</h2>
-                <p class="text-gray-600 mb-6">Below are the requests submitted by various departments.</p>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-sm border rounded">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="px-4 py-2 text-left font-semibold">Department</th>
-                                <th class="px-4 py-2 text-left font-semibold">Request Title</th>
-                                <th class="px-4 py-2 text-left font-semibold">Request Type</th>
-                                <th class="px-4 py-2 text-left font-semibold">Date Needed</th>
-                                <th class="px-4 py-2 text-left font-semibold">Status</th>
-                                <th class="px-4 py-2 text-left font-semibold">Actions</th>
+            <!-- Department Requests Section -->
+            <section class="bg-white rounded-lg shadow p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-800">Department Requests</h2>
+                </div>
+
+                <!-- Tabs -->
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <a href="#" class="whitespace-nowrap py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">All Requests</a>
+                        <a href="#" class="whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">Pending</a>
+                        <a href="#" class="whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">Delivered</a>
+                        <a href="#" class="whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">Rejected</a>
+                    </nav>
+                </div>
+
+                <div class="overflow-x-auto pt-4">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Request ID</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Requester</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="deptRequestsTable">
-                            <!-- Populated by JS -->
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">REQ-001</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Smith</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">IT</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Laptop</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Delivered</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button onclick="openEditModal(this)" class="text-gray-400 hover:text-gray-600 mr-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg></button>
+                                    <button class="text-gray-400 hover:text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">REQ-002</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sarah Johnson</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">HR</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Office Chair</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-18</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button onclick="openEditModal(this)" class="text-gray-400 hover:text-gray-600 mr-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg></button>
+                                    <button class="text-gray-400 hover:text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">REQ-003</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Michael Brown</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Finance</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Calculator</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-20</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Delivered</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button onclick="openEditModal(this)" class="text-gray-400 hover:text-gray-600 mr-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg></button>
+                                    <button class="text-gray-400 hover:text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></button>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">REQ-004</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Emily Davis</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Marketing</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Printer</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Rejected</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button onclick="openEditModal(this)" class="text-gray-400 hover:text-gray-600 mr-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" /></svg></button>
+                                    <button class="text-gray-400 hover:text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
+
+           
         </main>
     </div>
+
+    <!-- Editable Request Details Modal -->
+    <div id="editRequestModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-4xl transform transition-all">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="text-xl font-semibold text-gray-800">Request Details - <span id="modalReqId"></span></h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600">&times;</button>
+            </div>
+            <div class="mt-4">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <p class="text-sm text-gray-500">Requested By</p>
+                        <p id="modalRequester" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Department</p>
+                        <p id="modalDepartment" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Request Date</p>
+                        <p id="modalRequestDate" class="font-semibold"></p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-sm text-gray-500">Request Description</p>
+                    <p id="modalRequestDesc" class="font-semibold bg-gray-50 p-2 rounded">Request for office supplies needed for the new team members joining next week.</p>
+                </div>
+
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">Requested Items</h4>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Unit</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Partial Delivery Qty</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Partial Delivery Unit</th>
+                                <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalItemsTable" class="divide-y divide-gray-200">
+                            <!-- Items will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button onclick="closeEditModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Cancel</button>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="requestDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center border-b p-4">
+                <h3 class="text-lg font-bold">Request Details</h3>
+                <button onclick="closeRequestDetails()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-600">Request ID</p>
+                        <p id="modalReqId" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Requester</p>
+                        <p id="modalReqName" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Department</p>
+                        <p id="modalReqCollege" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Request Type</p>
+                        <p id="modalReqType" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Date Requested</p>
+                        <p id="modalReqDate" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Status</p>
+                        <p id="modalReqStatus" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Priority</p>
+                        <p id="modalReqPriority" class="font-semibold"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t p-4 flex justify-end">
+                <button onclick="closeRequestDetails()" class="px-4 py-2 bg-red-900 text-white rounded hover:bg-red-800">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rejection Confirmation Modal -->
+    <div id="rejectModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center border-b p-4">
+                <h3 class="text-lg font-bold">Reject Request</h3>
+                <button onclick="closeRejectModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 space-y-4">
+                <p class="text-sm text-gray-600">Are you sure you want to reject request <span id="rejectRequestId" class="font-semibold"></span>?</p>
+                <div>
+                    <label for="rejectReason" class="block text-sm text-gray-600 mb-1">Reason for rejection:</label>
+                    <textarea id="rejectReason" rows="3" class="w-full border rounded p-2"></textarea>
+                    <p id="rejectError" class="text-red-500 text-xs mt-1 hidden">Please provide a reason for rejection.</p>
+                </div>
+            </div>
+            <div class="border-t p-4 flex justify-end space-x-3">
+                <button onclick="closeRejectModal()" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button onclick="confirmRejection()" class="px-4 py-2 bg-red-900 text-white rounded hover:bg-red-800">
+                    Confirm Rejection
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Endorsement Modal -->
+    <div id="endorseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 w-96">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Endorse Request</h3>
+                <button onclick="closeEndorseModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mb-4">
+                <p class="text-sm text-gray-600 mb-2">Endorse request <span id="endorseRequestId" class="font-semibold"></span> to:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="endorseTo" value="purchasing" class="text-blue-600" checked>
+                        <span>Purchasing Department</span>
+                    </label>
+                    <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50 cursor-pointer">
+                        <input type="radio" name="endorseTo" value="finance" class="text-blue-600">
+                        <span>Finance Department</span>
+                    </label>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button onclick="closeEndorseModal()" class="px-4 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button onclick="confirmEndorsement()" class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700">
+                    Confirm Endorsement
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Example: Fetch from localStorage (uc_crms_requests and uc_crms_admin_requests)
         document.addEventListener('DOMContentLoaded', function() {
@@ -115,6 +361,175 @@
                 `;
             });
         });
+
+        // Shared variables for all modals
+        let currentModalButton = null;
+        let currentRequestId = '';
+
+        // Request Details Modal
+        function viewRequestDetails(row) {
+            currentRequestId = row.cells[0].textContent;
+            document.getElementById('modalReqId').textContent = currentRequestId;
+            document.getElementById('modalReqName').textContent = row.cells[1].textContent;
+            document.getElementById('modalReqCollege').textContent = row.cells[2].textContent;
+            document.getElementById('modalReqType').textContent = row.cells[3].textContent;
+            document.getElementById('modalReqDate').textContent = row.cells[4].textContent;
+            document.getElementById('modalReqStatus').textContent = row.cells[5].textContent;
+            document.getElementById('modalReqPriority').textContent = row.cells[6].textContent;
+            document.getElementById('requestDetailsModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRequestDetails() {
+            document.getElementById('requestDetailsModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
+        }
+
+        // Reject Modal
+        function showRejectModal(button) {
+            currentModalButton = button;
+            currentRequestId = button.getAttribute('data-id');
+            document.getElementById('rejectRequestId').textContent = `#${currentRequestId}`;
+            document.getElementById('rejectModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
+        }
+
+        // Endorsement Modal
+        function showEndorseModal(button) {
+            currentModalButton = button;
+            currentRequestId = button.getAttribute('data-id');
+            document.getElementById('endorseRequestId').textContent = `#${currentRequestId}`;
+            document.getElementById('endorseModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEndorseModal() {
+            document.getElementById('endorseModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            currentModalButton = null;
+            currentRequestId = '';
+        }
+
+        function confirmEndorsement() {
+            const endorseTo = document.querySelector('input[name="endorseTo"]:checked').value;
+            
+            // Here you would typically make an API call to endorse the request
+            console.log(`Endorsing request ${currentRequestId} to ${endorseTo} department.`);
+            
+            // Update the UI to show the request was endorsed
+            if (currentModalButton) {
+                const row = currentModalButton.closest('tr');
+                if (row) {
+                    const statusCell = row.querySelector('td:nth-last-child(2)');
+                    if (statusCell) {
+                        statusCell.innerHTML = '<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">Endorsed</span>';
+                    }
+                    
+                    // Disable the reject and endorse buttons
+                    const buttons = row.querySelectorAll('button');
+                    buttons.forEach(btn => {
+                        if (btn.textContent.includes('Reject') || btn.textContent.includes('Endorse')) {
+                            btn.disabled = true;
+                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                        }
+                    });
+                }
+            }
+            
+            alert(`Request #${currentRequestId} has been endorsed.`);
+            closeEndorseModal();
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const requestDetailsModal = document.getElementById('requestDetailsModal');
+            const rejectModal = document.getElementById('rejectModal');
+            const endorseModal = document.getElementById('endorseModal');
+            
+            if (event.target === requestDetailsModal) {
+                closeRequestDetails();
+            } else if (event.target === rejectModal) {
+                closeRejectModal();
+            } else if (event.target === endorseModal) {
+                closeEndorseModal();
+            }
+        });
+    </script>
+<script>
+        function openEditModal(button) {
+            const modal = document.getElementById('editRequestModal');
+            const row = button.closest('tr');
+
+            // --- Sample Data (replace with actual data from row) ---
+            const requestData = {
+                id: row.cells[0].textContent,
+                requester: row.cells[1].textContent,
+                department: row.cells[2].textContent,
+                date: row.cells[5].textContent,
+                items: [
+                    {
+                        name: row.cells[3].textContent,
+                        quantity: row.cells[4].textContent,
+                        unit: 'pcs', // Default or from data
+                        status: row.cells[6].textContent.trim()
+                    },
+                    {
+                        name: 'Stapler',
+                        quantity: 1,
+                        unit: 'pcs',
+                        status: 'Pending'
+                    }
+                ]
+            };
+
+            // --- Populate Static Fields ---
+            document.getElementById('modalReqId').textContent = requestData.id;
+            document.getElementById('modalRequester').textContent = requestData.requester;
+            document.getElementById('modalDepartment').textContent = requestData.department;
+            document.getElementById('modalRequestDate').textContent = requestData.date;
+
+            // --- Populate Items Table ---
+            const itemsTableBody = document.getElementById('modalItemsTable');
+            itemsTableBody.innerHTML = ''; // Clear previous items
+
+            const unitOptions = ['pcs', 'box', 'ream', 'pack', 'set', 'roll', 'bottle', 'liter', 'kg', 'meter'];
+            const statusOptions = ['Pending', 'Delivered', 'Rejected', 'For Purchase Request', 'For Purchase Order'];
+
+            requestData.items.forEach(item => {
+                const itemRow = document.createElement('tr');
+                
+                // Create dropdown HTML strings
+                const unitDropdown = `<select class="border rounded p-1">${unitOptions.map(u => `<option value="${u}" ${item.unit === u ? 'selected' : ''}>${u}</option>`).join('')}</select>`;
+                const statusDropdown = `<select class="border rounded p-1">${statusOptions.map(s => `<option value="${s}" ${item.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select>`;
+
+                itemRow.innerHTML = `
+                    <td class="py-2 px-4">${item.name}</td>
+                    <td class="py-2 px-4">${item.quantity}</td>
+                    <td class="py-2 px-4">${unitDropdown}</td>
+                    <td class="py-2 px-4">${statusDropdown}</td>
+                    <td class="py-2 px-4"><input type="number" class="border rounded p-1 w-20"></td>
+                    <td class="py-2 px-4">${unitDropdown}</td>
+                    <td class="py-2 px-4"><input type="text" class="border rounded p-1 w-full"></td>
+                `;
+                itemsTableBody.appendChild(itemRow);
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('editRequestModal');
+            modal.classList.add('hidden');
+        }
     </script>
 </body>
 </html>
