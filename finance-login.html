@@ -76,41 +76,27 @@
                 </div>
             </header>
 
-            <!-- Dashboard Cards -->
-            <section class="grid grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
-                    <div class="text-gray-500 text-sm mb-2">Pending Requests</div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-3xl font-bold">12</span>
-                        <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-xs font-semibold">+8% from last week</span>
-                    </div>
+            <!-- Stats Section -->
+            <section class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold text-red-900">Total Requests</h2>
+                    <p class="text-2xl font-bold text-red-900">57</p>
+                    <p class="text-red-600">+5% from last month</p>
                 </div>
-                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
-                    <div class="text-gray-500 text-sm mb-2">Approved Requests</div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-3xl font-bold">45</span>
-                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-semibold">+12% from last week</span>
-                    </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold text-yellow-700">Pending Requests</h2>
+                    <p class="text-2xl font-bold text-yellow-700">12</p>
+                    <p class="text-yellow-600">+8% from last week</p>
                 </div>
-                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-gray-500 text-sm">Rejected Requests</span>
-                        <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">REJECTED REQUESTS</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold">₱125,450</span>
-                        <span class="text-xs text-gray-400">remaining</span>
-                    </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold text-green-700">Approved</h2>
+                    <p class="text-2xl font-bold text-green-700">45</p>
+                    <p class="text-green-600">+12% from last week</p>
                 </div>
-                <div class="bg-white rounded shadow p-5 flex flex-col justify-between">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-gray-500 text-sm">Total Requests</span>
-                        <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">TOTAL REQUESTS</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-3xl font-bold">57</span>
-                        <span class="text-xs text-red-600">↑5% from last month</span>
-                    </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold text-gray-700">Rejected</h2>
+                    <p class="text-2xl font-bold text-gray-700">7</p>
+                    <p class="text-gray-500">-2 from last week</p>
                 </div>
             </section>
 
@@ -144,6 +130,7 @@
                             <th class="py-2 px-3 text-left font-semibold">Request ID</th>
                             <th class="py-2 px-3 text-left font-semibold">Requester</th>
                             <th class="py-2 px-3 text-left font-semibold">Department</th>
+                            <th class="py-2 px-3 text-left font-semibold">Priority</th>
                             <th class="py-2 px-3 text-left font-semibold">Items</th>
                             <th class="py-2 px-3 text-left font-semibold">Total Amount</th>
                             <th class="py-2 px-3 text-left font-semibold">Date Requested</th>
@@ -156,6 +143,7 @@
                             <td class="py-2 px-3">REQ-2023-0045</td>
                             <td class="py-2 px-3">Maria Santos</td>
                             <td class="py-2 px-3">Human Resources</td>
+                            <td class="py-2 px-3"><span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">High</span></td>
                             <td class="py-2 px-3">3 item(s)</td>
                             <td class="py-2 px-3">₱3,050.00</td>
                             <td class="py-2 px-3">2023-06-15</td>
@@ -180,6 +168,7 @@
                             <td class="py-2 px-3">REQ-2023-0044</td>
                             <td class="py-2 px-3">Juan Cruz</td>
                             <td class="py-2 px-3">IT Department</td>
+                            <td class="py-2 px-3"><span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Medium</span></td>
                             <td class="py-2 px-3">2 item(s)</td>
                             <td class="py-2 px-3">₱9,250.00</td>
                             <td class="py-2 px-3">2023-06-14</td>
@@ -213,6 +202,75 @@
                         <span class="px-2 py-1">...</span>
                         <button class="px-2 py-1 rounded border bg-white text-gray-700">5</button>
                         <button class="px-2 py-1 rounded border text-gray-500 bg-white">&gt;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity Section -->
+            <section class="bg-white rounded shadow p-6 mt-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-lg font-semibold">Recent Activity</h2>
+                    <button class="text-blue-600 text-sm font-medium">View All</button>
+                </div>
+                <div class="space-y-4">
+                    <!-- Activity Item 1 -->
+                    <div class="flex items-start pb-4 border-b border-gray-100">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900">
+                                Approved REQ-007
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                Office chairs for IT Department
+                            </p>
+                            <p class="text-xs text-gray-400 mt-1">
+                                10 minutes ago
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Activity Item 2 -->
+                    <div class="flex items-start pb-4 border-b border-gray-100">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center mr-3">
+                            <svg class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900">
+                                Rejected REQ-006
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                New laptop for Marketing Team
+                            </p>
+                            <p class="text-xs text-gray-400 mt-1">
+                                2 hours ago
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Activity Item 3 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900">
+                                New request received
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                REQ-008: Projector for Conference Room
+                            </p>
+                            <p class="text-xs text-gray-400 mt-1">
+                                Just now
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Reports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-red-900 text-white h-screen flex flex-col fixed top-0 left-0 z-30">
+            <div class="p-6">
+                <img src="uc_logo.png" alt="UC CRMS Logo" class="w-16 mx-auto">
+                <h1 class="text-center text-lg font-bold mt-4">UC CRMS</h1>
+                <!-- Admin Info -->
+                <div class="mt-4 text-center flex flex-col items-center">
+                    <div class="flex items-center justify-center mb-1">
+                        <svg class="w-6 h-6 mr-2 text-red-200" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.7 0 4.5-2.2 4.5-4.5S14.7 3 12 3 7.5 5.2 7.5 7.5 9.3 12 12 12zm0 2c-3 0-9 1.5-9 4.5V21h18v-2.5c0-3-6-4.5-9-4.5z"/>
+                        </svg>
+                        <div class="text-sm font-semibold">Admin User</div>
+                    </div>
+                    <div class="text-xs text-red-200">Logistics Management Office</div>
+                </div>
+            </div>
+            <nav class="flex-grow">
+                <ul class="space-y-2 px-4">
+                    <li><a href="admin-dashboard.html" class="block py-2 px-4 rounded hover:bg-red-700">Dashboard</a></li>
+                    <li><a href="admin-new-request.html" class="block py-2 px-4 rounded hover:bg-red-700">New Request</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">My Requests</a></li>
+                    <li><a href="admin-department-requests.html" class="block py-2 px-4 rounded hover:bg-red-700">Department Requests</a></li>
+                    <li><a href="admin-reports.html" class="block py-2 px-4 rounded bg-red-700">Reports</a></li>
+                    <li><a href="#" class="block py-2 px-4 rounded hover:bg-red-700">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="px-4 py-2">
+                <a href="#" class="block py-2 px-4 rounded bg-gray-300 text-red-800 hover:bg-gray-400 text-center">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6 ml-64">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6 bg-white bg-opacity-90 sticky top-0 z-20 p-4 rounded shadow">
+                <div>
+                    <h1 class="text-2xl font-bold text-red-900">Centralized Request Monitoring System</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700">Admin User</span>
+                    <button class="text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.5V11a6.002 6.002 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.002 6.002 0 004 11v3.5c0 .379-.214.725-.595.895L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Reports Section -->
+<section class="bg-white p-4 rounded shadow mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+        <h2 class="text-lg font-bold mb-2 md:mb-0">Request Reports</h2>
+        <div class="flex flex-wrap gap-2 items-center">
+            <select class="border rounded px-2 py-1 text-sm" id="dateRange">
+                <option>Last 30 Days</option>
+                <option>Last 7 Days</option>
+                <option>This Month</option>
+                <option>This Year</option>
+            </select>
+            <select class="border rounded px-2 py-1 text-sm" id="filterList">
+                <option>Filter List</option>
+                <option>Requester</option>
+                <option>Department</option>
+                <option>Status</option>
+            </select>
+            <button class="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-800 text-sm" id="exportPDF">Export PDF</button>
+            <button class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 text-sm" id="exportExcel">Export Excel</button>
+        </div>
+    </div>
+    <!-- Tabs -->
+    <div class="border-b mb-4">
+        <nav class="flex space-x-6" aria-label="Tabs">
+            <button class="py-2 px-1 border-b-2 border-blue-600 font-medium text-blue-600 focus:outline-none" id="tab-all">All Requests</button>
+            <button class="py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-blue-600 hover:border-blue-600 focus:outline-none" id="tab-pending">Pending</button>
+            <button class="py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-blue-600 hover:border-blue-600 focus:outline-none" id="tab-delivered">Delivered</button>
+            <button class="py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-blue-600 hover:border-blue-600 focus:outline-none" id="tab-rejected">Rejected</button>
+        </nav>
+    </div>
+    <!-- Table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full border-collapse">
+            <thead>
+                <tr class="bg-gray-100 text-xs uppercase">
+                    <th class="border p-2 font-bold text-left">Request ID</th>
+                    <th class="border p-2 font-bold text-left">Requester</th>
+                    <th class="border p-2 font-bold text-left">Department</th>
+                    <th class="border p-2 font-bold text-left">Item</th>
+                    <th class="border p-2 font-bold text-left">Quantity</th>
+                    <th class="border p-2 font-bold text-left">Date</th>
+                    <th class="border p-2 font-bold text-left">Status</th>
+                    <th class="border p-2 font-bold text-left">Last Updated</th>
+                    <th class="border p-2 font-bold text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border p-2 font-bold">REQ-001</td>
+                    <td class="border p-2">John Smith</td>
+                    <td class="border p-2">IT</td>
+                    <td class="border p-2">Laptop</td>
+                    <td class="border p-2">2</td>
+                    <td class="border p-2">2023-06-15</td>
+                    <td class="border p-2"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Delivered</span></td>
+                    <td class="border p-2">2023-06-20</td>
+                    <td class="border p-2">
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded text-xs">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border p-2 font-bold">REQ-002</td>
+                    <td class="border p-2">Sarah Johnson</td>
+                    <td class="border p-2">HR</td>
+                    <td class="border p-2">Office Chair</td>
+                    <td class="border p-2">5</td>
+                    <td class="border p-2">2023-06-18</td>
+                    <td class="border p-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Pending</span></td>
+                    <td class="border p-2">2023-06-19</td>
+                    <td class="border p-2">
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded text-xs">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border p-2 font-bold">REQ-003</td>
+                    <td class="border p-2">Jane Doe</td>
+                    <td class="border p-2">Finance</td>
+                    <td class="border p-2">Projector</td>
+                    <td class="border p-2">1</td>
+                    <td class="border p-2">2023-06-21</td>
+                    <td class="border p-2"><span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Rejected</span></td>
+                    <td class="border p-2">2023-06-21</td>
+                    <td class="border p-2">
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded text-xs">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+        </main>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="requestModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-lg w-full max-w-3xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-red-900 text-white px-6 py-4 flex justify-between items-center">
+                <h3 class="text-lg font-semibold">Request Details</h3>
+                <button id="closeModal" class="text-white hover:text-gray-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="p-6">
+                <div class="space-y-6">
+                    <!-- Description Section -->
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-medium text-gray-700 mb-2">Description</h4>
+                        <p id="description" class="text-sm text-gray-600">-</p>
+                    </div>
+                    
+                    <!-- Details Grid -->
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Request ID</p>
+                                <p id="requestId" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Status</p>
+                                <p id="status" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Requester</p>
+                                <p id="requester" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Department</p>
+                                <p id="department" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Item</p>
+                                <p id="item" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Quantity</p>
+                                <p id="quantity" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Request Date</p>
+                                <p id="requestDate" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 mb-1">Last Updated</p>
+                                <p id="lastUpdated" class="font-medium">-</p>
+                            </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="mt-6 pt-4 border-t flex justify-end space-x-3">
+                    <button id="closeBtn" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 text-sm font-medium">
+                        Close
+                    </button>
+                    <button id="printBtn" class="px-6 py-2 bg-red-700 text-white rounded-md hover:bg-red-800 text-sm font-medium">
+                        Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample request data (in a real app, this would come from an API)
+        const requestData = {
+            'REQ-001': {
+                requester: 'John Smith',
+                department: 'IT',
+                item: 'Laptop',
+                quantity: '2',
+                date: '2023-06-15',
+                status: 'Delivered',
+                lastUpdated: '2023-06-20',
+                description: 'Request for 2 new laptops for the IT department. Required for new hires starting next month.'
+            },
+            'REQ-002': {
+                requester: 'Sarah Johnson',
+                department: 'HR',
+                item: 'Office Chair',
+                quantity: '5',
+                date: '2023-06-18',
+                status: 'Pending',
+                lastUpdated: '2023-06-19',
+                description: 'Need 5 ergonomic office chairs for the new HR department office setup.'
+            },
+            'REQ-003': {
+                requester: 'Jane Doe',
+                department: 'Finance',
+                item: 'Projector',
+                quantity: '1',
+                date: '2023-06-21',
+                status: 'Rejected',
+                lastUpdated: '2023-06-21',
+                description: 'Request for a high-lumen projector for the conference room. Budget constraints prevent approval at this time.'
+            }
+        };
+
+        // Modal elements
+        const modal = document.getElementById('requestModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Add click event to all view buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewButtons = document.querySelectorAll('button.bg-blue-600');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const requestId = row.querySelector('td:first-child').textContent;
+                    showRequestDetails(requestId);
+                });
+            });
+
+            // Close modal when clicking the close button or outside the modal
+            [closeModal, closeBtn].forEach(element => {
+                element.addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                });
+            });
+
+            // Close modal when clicking outside the modal content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        });
+
+        // Function to show request details in the modal
+        function showRequestDetails(requestId) {
+            const request = requestData[requestId];
+            if (!request) return;
+
+            // Update modal content
+            document.getElementById('requestId').textContent = requestId;
+            document.getElementById('requester').textContent = request.requester;
+            document.getElementById('department').textContent = request.department;
+            document.getElementById('item').textContent = request.item;
+            document.getElementById('quantity').textContent = request.quantity;
+            document.getElementById('requestDate').textContent = request.date;
+            document.getElementById('lastUpdated').textContent = request.lastUpdated;
+            document.getElementById('description').textContent = request.description;
+            
+            // Update status with appropriate styling
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = request.status;
+            statusElement.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ' + 
+                (request.status === 'Delivered' ? 'bg-green-100 text-green-800' : 
+                 request.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 
+                 'bg-red-100 text-red-800');
+            
+            // Show the modal
+            modal.classList.remove('hidden');
+        }
+        
+        // Add print functionality
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+
+        // Add event listeners for export buttons
+        document.getElementById('exportPDF').addEventListener('click', () => {
+            // Export to PDF logic here
+            alert('Export to PDF functionality coming soon!');
+        });
+
+        document.getElementById('exportExcel').addEventListener('click', () => {
+            // Export to Excel logic here
+            alert('Export to Excel functionality coming soon!');
+        });
+    </script>
+</body>
+</html>

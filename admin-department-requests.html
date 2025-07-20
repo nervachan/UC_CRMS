@@ -205,7 +205,7 @@
             </div>
             <div class="mt-6 flex justify-end space-x-4">
                 <button onclick="closeEditModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Cancel</button>
-                <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save Changes</button>
+                <button onclick="handleSaveChanges()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save Changes</button>
             </div>
         </div>
     </div>
@@ -465,6 +465,11 @@
         });
     </script>
 <script>
+        function handleSaveChanges() {
+            alert('Request updated successfully!');
+            closeEditModal();
+        }
+
         function openEditModal(button) {
             const modal = document.getElementById('editRequestModal');
             const row = button.closest('tr');
