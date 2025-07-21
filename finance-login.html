@@ -153,7 +153,7 @@
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                     View
                                 </button>
-                                <button class="text-green-600 hover:text-green-800 px-2 py-1 rounded border border-green-200 hover:bg-green-50 text-sm flex items-center">
+                                <button onclick="showEndorseModal(this)" class="text-green-600 hover:text-green-800 px-2 py-1 rounded border border-green-200 hover:bg-green-50 text-sm flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
                                     Endorse
                                 </button>
@@ -178,7 +178,7 @@
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                     View
                                 </button>
-                                <button class="text-green-600 hover:text-green-800 px-2 py-1 rounded border border-green-200 hover:bg-green-50 text-sm flex items-center">
+                                <button onclick="showEndorseModal(this)" class="text-green-600 hover:text-green-800 px-2 py-1 rounded border border-green-200 hover:bg-green-50 text-sm flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
                                     Endorse
                                 </button>
@@ -443,23 +443,82 @@
         </div>
     </div>
 
+    <!-- Endorsement Modal -->
+    <div id="endorseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center border-b px-6 py-4">
+                <h3 class="text-lg font-semibold">Endorse Request</h3>
+                <button onclick="closeEndorseModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-4">Request ID: <span id="endorseRequestId" class="font-medium">#REQ-0000</span></p>
+                    <p class="text-sm font-medium text-gray-700 mb-2">Endorse to:</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input id="endorseLMO" type="radio" name="endorseTo" value="LMO" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                            <label for="endorseLMO" class="ml-2 block text-sm text-gray-700">LMO</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="endorsePurchasing" type="radio" name="endorseTo" value="Purchasing" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                            <label for="endorsePurchasing" class="ml-2 block text-sm text-gray-700">Purchasing</label>
+                        </div>
+                    </div>
+                    <p id="endorseError" class="mt-2 text-sm text-red-600 hidden">Please select an endorsement option.</p>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="closeEndorseModal()" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="confirmEndorsement()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Confirm Endorsement
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let currentRejectButton = null;
+        let currentEndorseButton = null;
         let currentRequestId = '';
+
+        function showEndorseModal(button) {
+            currentEndorseButton = button;
+            const requestId = button.closest('tr').querySelector('td:first-child').textContent;
+            currentRequestId = requestId;
+            document.getElementById('endorseRequestId').textContent = requestId;
+            document.getElementById('endorseError').classList.add('hidden');
+            // Uncheck any previously selected radio buttons
+            document.querySelectorAll('input[name="endorseTo"]').forEach(radio => {
+                radio.checked = false;
+            });
+            document.getElementById('endorseModal').classList.remove('hidden');
+        }
 
         function showRejectModal(button) {
             currentRejectButton = button;
-            currentRequestId = button.getAttribute('data-id');
-            document.getElementById('rejectRequestId').textContent = `#${currentRequestId}`;
+            const requestId = button.closest('tr').querySelector('td:first-child').textContent;
+            currentRequestId = requestId;
+            document.getElementById('rejectRequestId').textContent = requestId;
             document.getElementById('rejectReason').value = '';
             document.getElementById('rejectError').classList.add('hidden');
             document.getElementById('rejectModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEndorseModal() {
+            document.getElementById('endorseModal').classList.add('hidden');
+            currentEndorseButton = null;
+            currentRequestId = '';
         }
 
         function closeRejectModal() {
             document.getElementById('rejectModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
             currentRejectButton = null;
             currentRequestId = '';
         }
@@ -472,6 +531,9 @@
                 errorElement.classList.remove('hidden');
                 return;
             }
+            
+            // Show alert with rejection reason
+            alert(`Request ${currentRequestId} has been rejected.\n\nReason: ${reason}`);
             
             // Here you would typically make an API call to reject the request
             console.log(`Rejecting request ${currentRequestId} with reason:`, reason);
@@ -494,26 +556,75 @@
                             btn.classList.add('opacity-50', 'cursor-not-allowed');
                         }
                     });
+                    
+                    // Update the reject button text
+                    const rejectButton = row.querySelector('button:has(svg[stroke="currentColor"])');
+                    if (rejectButton && rejectButton.textContent.includes('Reject')) {
+                        rejectButton.innerHTML = `
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            Rejected
+                        `;
+                    }
                 }
             }
-            
-            // Show success message (you can replace this with a toast notification)
-            alert(`Request #${currentRequestId} has been rejected.`);
             
             // Close the modal
             closeRejectModal();
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const rejectModal = document.getElementById('rejectModal');
-            if (event.target === rejectModal) {
+        // Close modals when clicking outside
+        document.getElementById('rejectModal').onclick = function(event) {
+            if (event.target === this) {
                 closeRejectModal();
             }
+        };
+
+        document.getElementById('endorseModal').onclick = function(event) {
+            if (event.target === this) {
+                closeEndorseModal();
+            }
+        };
+
+        // Prevent modals from closing when clicking inside
+        document.querySelector('#rejectModal > div').onclick = function(event) {
+            event.stopPropagation();
+        };
+
+        document.querySelector('#endorseModal > div').onclick = function(event) {
+            event.stopPropagation();
+        };
+
+        function confirmEndorsement() {
+            const selectedOption = document.querySelector('input[name="endorseTo"]:checked');
+            const errorElement = document.getElementById('endorseError');
             
-            const requestModal = document.getElementById('requestModal');
-            if (event.target === requestModal) {
-                closeModal();
+            if (!selectedOption) {
+                errorElement.classList.remove('hidden');
+                return;
+            }
+            
+            const selectedValue = selectedOption.value;
+            const requestId = document.getElementById('endorseRequestId').textContent;
+            
+            // Here you would typically make an API call to process the endorsement
+            console.log(`Endorsing request ${requestId} to: ${selectedValue}`);
+            
+            // Show success message and close modal
+            alert(`Request ${requestId} has been successfully endorsed to ${selectedValue}`);
+            closeEndorseModal();
+            
+            // If needed, you can update the UI to reflect the endorsement
+            if (currentEndorseButton) {
+                currentEndorseButton.disabled = true;
+                currentEndorseButton.classList.add('opacity-50', 'cursor-not-allowed');
+                currentEndorseButton.innerHTML = `
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Endorsed to ${selectedValue}
+                `;
             }
         }
     </script>
